@@ -15,7 +15,6 @@ from pptx.enum.shapes import MSO_SHAPE
 
 from pptx_helpers import set_pure_white_bg, add_header, add_icon_card, add_formatted_bullets, add_formatted_text
 
-# Master Acronym Database
 ACRONYM_DB = {
     "AIEC": ("人工智慧評測與認證體系", "Artificial Intelligence Evaluation & Certification"),
     "AI": ("人工智慧", "Artificial Intelligence"),
@@ -117,7 +116,7 @@ def render_latex_to_png(latex_str, output_filename, fontsize=18, color_hex='#1e3
     plt.close(fig)
     return out_path
 
-def add_acronym_footer(slide, acronym_keys, y_pos=7.75, height=0.95):
+def add_acronym_footer(slide, acronym_keys, y_pos=7.60, height=0.95):
     NAVY = RGBColor(12, 35, 64)
     BLUE = RGBColor(37, 99, 235)
     MUTED = RGBColor(100, 116, 139)
@@ -163,7 +162,7 @@ def generate_33_slides_master_deck():
     DARK_BLUE = RGBColor(30, 58, 138)
 
     # ----------------------------------------------------
-    # Slide 1: TITLE SLIDE (Requirement 3 & 1)
+    # Slide 1: TITLE SLIDE (Purge 'LaTeX' word!)
     # ----------------------------------------------------
     s1 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s1)
@@ -189,7 +188,6 @@ def generate_33_slides_master_deck():
     tf1 = tb1.text_frame
     tf1.word_wrap = True
     p = tf1.paragraphs[0]
-    # Requirement 3: Change title to "AIEC 國防級 AI 專屬評測與驗證 SOP 全集"
     p.text = "AIEC 國防級 AI 專屬評測與驗證 SOP 全集"
     p.font.size = Pt(36)
     p.font.bold = True
@@ -203,23 +201,20 @@ def generate_33_slides_master_deck():
     cover_bullets = [
         "1. **國家級總體架構藍圖對齊 (NCSIST AIEC Blueprint)**：整合代碼注入/數據污染防禦、底層 5 大戰術柱石 (RoE, 分層架構, 紅隊演練, 資料分級, 供應鏈合規)",
         "2. **安全、保密與審計三維縱深矩陣 (3D Defense Matrix)**：對抗防禦 (ATLAS)、邊緣防篡改與模型自毀 (<100ms)、聯邦學習「模型移動，資料不動」、Data/Model Provenance 溯源",
-        "3. **權威標準與量化指標全集**：精準融合 ISO 42001 (AIMS), NIST AI RMF 1.0 (Measure), DoD CDAO T&E, MITRE ATLAS 與 15 項 LaTeX 量化評測公式"
+        "3. **權威標準與量化指標全集**：精準融合 ISO 42001 (AIMS), NIST AI RMF 1.0 (Measure), DoD CDAO T&E, MITRE ATLAS 與 15 項量化評測數學公式"
     ]
     add_formatted_bullets(tf_sub, cover_bullets, font_size=15.0, text_color=RGBColor(226, 232, 240), bold_color=RGBColor(255, 255, 255))
 
-    # Requirement 1: Add MSR, garak, RAGAS to Slide 1 Footnote
     s1_acronyms = ["AIEC", "NCSIST", "NIST", "RMF", "DoD", "CDAO", "T&E", "ISO", "AIMS", "MITRE", "ATLAS", "MSR", "garak", "RAGAS", "SOP"]
-    add_acronym_footer(s1, s1_acronyms, y_pos=7.65, height=1.0)
+    add_acronym_footer(s1, s1_acronyms, y_pos=7.60, height=1.0)
 
     # ----------------------------------------------------
-    # Slide 2: TABLE OF CONTENTS (Requirement 4 & 2)
+    # Slide 2: TABLE OF CONTENTS
     # ----------------------------------------------------
     s2 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s2)
-    # Requirement 4: Header title "AIEC 國防級 AI 評測全集 - 簡報目錄"
     add_header(s2, "AIEC 國防級 AI 評測全集 - 簡報目錄", "AIEC GOVERNANCE & EVALUATION MASTER DECK")
 
-    # Requirement 2: Clean, non-overlapping 2-card layout
     add_icon_card(s2, 0.8, 1.6, 7.0, 5.9, "📋", "簡報導覽與核心區塊 (1-3)", "Governance, Methodology & System SOPs", accent_color=BLUE)
     tb_c1 = s2.shapes.add_textbox(Inches(1.1), Inches(2.6), Inches(6.4), Inches(4.7))
     c1_bullets = [
@@ -244,7 +239,7 @@ def generate_33_slides_master_deck():
         "   - P.32 戰術邊緣硬體防篡改與模型自毀 (<100ms) | P.33 地端模型蒸餾與 Provenance"
     ]
     add_formatted_bullets(tb_c2.text_frame, c2_bullets, font_size=12.0)
-    add_acronym_footer(s2, ["AIEC", "NCSIST", "SHIELD", "ISO", "AIMS", "ATLAS", "JATIC", "RAGAS", "garak", "PyOD"], y_pos=7.65, height=1.0)
+    add_acronym_footer(s2, ["AIEC", "NCSIST", "SHIELD", "ISO", "AIMS", "ATLAS", "JATIC", "RAGAS", "garak", "PyOD"], y_pos=7.60, height=1.0)
 
     # ----------------------------------------------------
     # SECTION 1: Slide 3 - AIEC 規範與治理雙支柱
@@ -277,7 +272,7 @@ def generate_33_slides_master_deck():
         "6. **Detect (漂移偵測)**：即時監控數據分布與概念漂移 (Concept Drift)。"
     ]
     add_formatted_bullets(tb_s3_r.text_frame, s3_r_bullets, font_size=12.5)
-    add_acronym_footer(s3, ["NCSIST", "AIEC", "DAGR", "SHIELD", "CMMC", "RoE", "HITL", "HOTL", "HOOTL", "TRL", "COA"], y_pos=7.65, height=1.0)
+    add_acronym_footer(s3, ["NCSIST", "AIEC", "DAGR", "SHIELD", "CMMC", "RoE", "HITL", "HOTL", "HOOTL", "TRL", "COA"], y_pos=7.60, height=1.0)
 
     # ----------------------------------------------------
     # SECTION 1: Slide 4 - SHIELD 治理循環活動
@@ -297,7 +292,7 @@ def generate_33_slides_master_deck():
         "6. **Detect (漂移監控)**：營運期間部署 PyOD 與 Alibi 模組，實現漂移告警極低時延。"
     ]
     add_formatted_bullets(tb_s4.text_frame, s4_bullets, font_size=13.0)
-    add_acronym_footer(s4, ["SHIELD", "CMMC", "RoE", "HITL", "HOTL", "HOOTL", "TRL", "COA", "PyOD", "AIEC"], y_pos=7.65, height=1.0)
+    add_acronym_footer(s4, ["SHIELD", "CMMC", "RoE", "HITL", "HOTL", "HOOTL", "TRL", "COA", "PyOD", "AIEC"], y_pos=7.60, height=1.0)
 
     # ----------------------------------------------------
     # SECTION 1: Slide 5 - ISO 42001 人工智慧管理系統
@@ -328,7 +323,7 @@ def generate_33_slides_master_deck():
         "   - 研發資料集分級與 RAG 抗降密洩漏稽核"
     ]
     add_formatted_bullets(tb_s5_r.text_frame, s5_r_bullets, font_size=13.0)
-    add_acronym_footer(s5, ["ISO", "AIMS", "AIIA", "AIEC", "TRL", "RoE", "HITL", "HOTL", "HOOTL", "LVC", "VBS", "EADSIM", "RAG"], y_pos=7.65, height=1.0)
+    add_acronym_footer(s5, ["ISO", "AIMS", "AIIA", "AIEC", "TRL", "RoE", "HITL", "HOTL", "HOOTL", "LVC", "VBS", "EADSIM", "RAG"], y_pos=7.60, height=1.0)
 
     # ----------------------------------------------------
     # SECTION 1: Slide 6 - MITRE ATLAS 人工智慧對抗威脅矩陣
@@ -357,12 +352,11 @@ def generate_33_slides_master_deck():
         "3. **AIEC 紅軍對抗實施**：使用 garak, IBM ART 360, PromptBench 在 Cyber Range 中進行實戰推演。"
     ]
     add_formatted_bullets(tb_s6_r.text_frame, s6_r_bullets, font_size=12.5)
-    add_acronym_footer(s6, ["MITRE", "ATLAS", "ATT&CK", "OWASP", "LLM", "API", "garak", "ART", "AIEC"], y_pos=7.65, height=1.0)
+    add_acronym_footer(s6, ["MITRE", "ATLAS", "ATT&CK", "OWASP", "LLM", "API", "garak", "ART", "AIEC"], y_pos=7.60, height=1.0)
 
     # ----------------------------------------------------
     # SECTION 2: Slides 7-10 (T&E Matrix & Methodologies)
     # ----------------------------------------------------
-    # Slide 7
     s7 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s7)
     add_header(s7, "DoD CDAO T&E 四大能力層次", "SECTION 2: T&E MATRIX & METHODOLOGY")
@@ -375,19 +369,18 @@ def generate_33_slides_master_deck():
         "4. **Level 4: 作戰性測試與評估 (Operational T&E)**：於 VBS 4 / EADSIM LVC 虛實整合平行戰場中，確效端到端任務完成率 (MSR) 與擊殺鏈閉合速度。"
     ]
     add_formatted_bullets(tb_s7.text_frame, s7_bullets, font_size=13.0)
-    add_acronym_footer(s7, ["DoD", "CDAO", "T&E", "HSI", "NASA-TLX", "ECE", "SPIFFE", "OPA", "API", "VBS", "EADSIM", "LVC", "MSR"], y_pos=7.65, height=1.0)
+    add_acronym_footer(s7, ["DoD", "CDAO", "T&E", "HSI", "NASA-TLX", "ECE", "SPIFFE", "OPA", "API", "VBS", "EADSIM", "LVC", "MSR"], y_pos=7.60, height=1.0)
 
-    # Slide 8
     s8 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s8)
     add_header(s8, "JATIC 七大共通構面 (JATIC Common Dimensions)", "SECTION 2: T&E MATRIX & METHODOLOGY")
     add_icon_card(s8, 0.8, 1.6, 7.0, 5.9, "🏛️", "JATIC 七大構面 (1 - 4)", "Robustness, Resiliency, Explainability & Competence", accent_color=BLUE)
     tb_s8_l = s8.shapes.add_textbox(Inches(1.1), Inches(2.6), Inches(6.4), Inches(4.7))
     s8_l_bullets = [
-        "1. ** Robustness (對抗與自然穩健性)**：對抗貼片與惡劣天候下維持高精度 (Q1, Q2)。",
+        "1. ** Robustness (對抗與自然穩健性)**：對抗貼片與惡劣天候下維護高精度 (Q1, Q2)。",
         "2. ** Resiliency (系統韌性與失效安全)**：極端異常時 100ms 內安全中斷 (Q4)。",
-        "3. ** Explainability (可解釋性)**：白箱提供特徵歸因熱力圖與 Point Game Score (Q7)。",
-        "4. ** Competence (勝任力與 MSR)**：端到端任務完成率 $\mathrm{MSR} \ge 0.95$ (Q3)。"
+        "3. ** Explainability (可解釋性)**：白箱提供特徵歸因熱力圖與 Point Game 得分 (Q7)。",
+        "4. ** Competence (勝任力與 MSR)**：端到端任務完成率指標達標 (Q3)。"
     ]
     add_formatted_bullets(tb_s8_l.text_frame, s8_l_bullets, font_size=13.0)
 
@@ -395,13 +388,12 @@ def generate_33_slides_master_deck():
     tb_s8_r = s8.shapes.add_textbox(Inches(8.5), Inches(2.6), Inches(6.4), Inches(4.7))
     s8_r_bullets = [
         "5. ** Fairness (公平性與無偏見)**：訓練數據與模型輸出無隱性偏見，合規 AIF360。",
-        "6. ** Trust Calibration (信任校準)**：期望校準誤差 $\mathrm{ECE} \le 0.05$，防止過度依賴 (Q5)。",
+        "6. ** Trust Calibration (信任校準)**：期望校準誤差滿定，防止過度依賴 (Q5)。",
         "7. ** Drift Detection (漂移監控)**：即時捕捉戰場數據與概念漂移 (Q12, PyOD)。"
     ]
     add_formatted_bullets(tb_s8_r.text_frame, s8_r_bullets, font_size=13.0)
-    add_acronym_footer(s8, ["JATIC", "MSR", "ECE", "PyOD", "AIF360"], y_pos=7.65, height=1.0)
+    add_acronym_footer(s8, ["JATIC", "MSR", "ECE", "PyOD", "AIF360"], y_pos=7.60, height=1.0)
 
-    # Slide 9
     s9 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s9)
     add_header(s9, "國防 AI 評測 6 大方法論與 SOP", "SECTION 2: T&E MATRIX & METHODOLOGY")
@@ -416,13 +408,12 @@ def generate_33_slides_master_deck():
         "6. **營運持續監控 (Continuous Monitoring)**：線上部署 PyOD 與 Alibi 模組，即時警報數據與概念漂移。"
     ]
     add_formatted_bullets(tb_s9.text_frame, s9_bullets, font_size=13.0)
-    add_acronym_footer(s9, ["SHAP", "LIME", "garak", "NASA-TLX", "EEG", "HMT", "PyOD", "API"], y_pos=7.65, height=1.0)
+    add_acronym_footer(s9, ["SHAP", "LIME", "garak", "NASA-TLX", "EEG", "HMT", "PyOD", "API"], y_pos=7.60, height=1.0)
 
-    # Slide 10
     s10 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s10)
     add_header(s10, "國防 AI 安全、保密與審計三維矩陣", "SECTION 2: T&E MATRIX & METHODOLOGY")
-    add_icon_card(s10, 0.8, 1.6, 14.4, 5.9, "🛡️", "安全 (Security)、保密 (Confidentiality) 與審計 (Auditing) 聯防體系", "3D Defense Matrix", accent_color=BLUE)
+    add_icon_card(s10, 0.8, 1.6, 14.4, 5.9, "🛡️", "安全、保密與審計三維聯防體系", "3D Defense Matrix", accent_color=BLUE)
     tb_s10 = s10.shapes.add_textbox(Inches(1.1), Inches(2.6), Inches(13.8), Inches(4.7))
     s10_bullets = [
         "1. **安全機制 (Security)**：對抗性攻擊防禦 (MITRE ATLAS / CALDERA)、無 GPS Mesh 邊緣硬體防篡改 (Hardware Tamper-Resistance) 與緊急模型自毀 (<100ms Flash/RAM 權重複寫)、JADC2 異質指管對接零信任 API 閘道 (SPIFFE/OPA)。",
@@ -430,115 +421,128 @@ def generate_33_slides_master_deck():
         "3. **審計機制 (Auditing)**：資料與模型溯源 (Data & Model Provenance 清洗規則、版本號)、決策可解釋性 (XAI 特徵歸因熱力圖)、信心分數 (Confidence Score) 校準、高保真日誌包含輸入傳感器數據與行動方案 (COA)。"
     ]
     add_formatted_bullets(tb_s10.text_frame, s10_bullets, font_size=13.0)
-    add_acronym_footer(s10, ["ATLAS", "SPIFFE", "OPA", "API", "JADC2", "GGUF", "LoRA", "XAI", "COA"], y_pos=7.65, height=1.0)
+    add_acronym_footer(s10, ["ATLAS", "SPIFFE", "OPA", "API", "JADC2", "GGUF", "LoRA", "XAI", "COA"], y_pos=7.60, height=1.0)
 
     # ----------------------------------------------------
-    # SECTION 3: Slides 11-16 (System SOPs)
+    # SECTION 3: Slides 11-16 (System SOPs - Render Math Equations)
     # ----------------------------------------------------
+    img_q1_s11 = render_latex_to_png(r'\mathrm{Acc}_{\mathrm{adv}}/\mathrm{Acc}_{\mathrm{clean}} \geq 0.90', 's11_q1.png')
+    img_q2_s11 = render_latex_to_png(r'\Delta \mathrm{mAP} \leq 0.10', 's11_q2.png')
+    img_q8_s12 = render_latex_to_png(r'R_{\mathrm{jailbreak\_def}} \geq 0.99', 's12_q8.png')
+    img_q10_s13 = render_latex_to_png(r'\mathrm{Context~Precision} \geq 0.90 \quad \wedge \quad \mathrm{Attribution} \geq 0.98', 's13_q10.png')
+    img_q11_s14 = render_latex_to_png(r'R_{\mathrm{unauth\_API}} = 0\%', 's14_q11.png')
+    img_q3_s15 = render_latex_to_png(r'\mathrm{MSR} \geq 0.95', 's15_q3.png')
+    img_q12_s16 = render_latex_to_png(r'\mathrm{Drift~Recall} \geq 0.95 \quad \wedge \quad t_{\mathrm{alarm}} \leq 5\mathrm{min}', 's16_q12.png')
+
     # Slide 11: A類
     s11 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s11)
     add_header(s11, "A類 - 電腦視覺與目標偵測評測 SOP", "SECTION 3: SYSTEM-SPECIFIC AI EVALUATION SOP")
-    add_icon_card(s11, 0.8, 1.6, 14.4, 5.9, "👁️", "CV / Target Detection Evaluation SOP", accent_color=BLUE)
+    add_icon_card(s11, 0.8, 1.6, 14.4, 5.9, "👁️", "A類 - 電腦視覺評測 SOP", "CV / Target Detection Evaluation SOP", accent_color=BLUE)
     tb_s11 = s11.shapes.add_textbox(Inches(1.1), Inches(2.6), Inches(13.8), Inches(4.7))
     s11_bullets = [
         "1. **適用範疇與核心威脅**：適用於 YOLO, Mobile SAM, 雷達 ISR 影像。防範對抗貼片 (Adversarial Patch)、FGSM/PGD 漸進擾動與天候干擾。",
         "2. **評測 SOP 與代表性工具鏈**：使用 IBM ART 360 / HEART 對樣本注入 ε 擾動；經由 NRTK 工具包合成 10 等級環境降質數據集壓力測試。",
-        "3. **關鍵指標與合格門檻**：",
-        "   - **Q1 對抗韌性**：$\mathrm{Acc}_{\mathrm{adv}}/\mathrm{Acc}_{\mathrm{clean}} \ge 0.90 \quad (\epsilon \le 0.05)$",
-        "   - **Q2 自然穩健性**：$\Delta \mathrm{mAP} \le 0.10 \quad (10\%\text{ Limit})$",
-        "   - **Q7 模型可解釋性**：$\mathrm{Point~Game~Score} \ge 0.85$ (XAITK / SHAP 歸因熱力圖)"
+        "3. **關鍵量化合格判定門檻**：",
+        "   - **Q1 對抗韌性門檻**：",
+        "   - **Q2 自然穩健性門檻**：",
+        "   - **Q7 模型可解釋性**：Point Game 得分高於 0.85 (XAITK / SHAP 歸因熱力圖)"
     ]
-    add_formatted_bullets(tb_s11.text_frame, s11_bullets, font_size=13.0)
-    add_acronym_footer(s11, ["CV", "YOLO", "ISR", "FGSM", "PGD", "ART", "HEART", "NRTK", "mAP", "XAITK", "SHAP"], y_pos=7.65, height=1.0)
+    add_formatted_bullets(tb_s11.text_frame, s11_bullets, font_size=12.5)
+    s11.shapes.add_picture(img_q1_s11, Inches(3.5), Inches(4.5), width=Inches(4.5))
+    s11.shapes.add_picture(img_q2_s11, Inches(3.5), Inches(5.1), width=Inches(3.5))
+    add_acronym_footer(s11, ["CV", "YOLO", "ISR", "FGSM", "PGD", "ART", "HEART", "NRTK", "mAP", "XAITK", "SHAP"], y_pos=7.60, height=1.0)
 
     # Slide 12: B類
     s12 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s12)
     add_header(s12, "B類 - 生成式 AI 與大語言模型評測 SOP", "SECTION 3: SYSTEM-SPECIFIC AI EVALUATION SOP")
-    add_icon_card(s12, 0.8, 1.6, 14.4, 5.9, "💬", "GenAI / LLM Evaluation SOP", accent_color=DARK_BLUE)
+    add_icon_card(s12, 0.8, 1.6, 14.4, 5.9, "💬", "B類 - 生成式 AI 評測 SOP", "GenAI / LLM Evaluation SOP", accent_color=DARK_BLUE)
     tb_s12 = s12.shapes.add_textbox(Inches(1.1), Inches(2.6), Inches(13.8), Inches(4.7))
     s12_bullets = [
         "1. **適用範疇與核心威脅**：適用於指管對答助手、LLM 情報摘要。防範 Prompt 注入 (Prompt Injection)、角色扮演越獄與虛構幻覺。",
         "2. **評測 SOP 與代表性工具鏈**：使用 garak 漏洞掃描框架執行 10,000 筆測試案例；部署 NeMo Guardrails 與 PromptBench 對照 OWASP LLM Top 10。",
-        "3. **關鍵指標與合格門檻**：",
-        "   - **Q8 提示越獄與抗注入**：$R_{\mathrm{jailbreak\_def}} \ge 0.99 \quad (99\%)$",
-        "   - **Q9 幻覺率與事實忠實度**：$\mathrm{Faithfulness} \ge 0.95 \quad \wedge \quad R_{\mathrm{hallucination}} \le 0.02$"
+        "3. **關鍵量化合格判定門檻**：",
+        "   - **Q8 提示越獄與抗注入門檻**：",
+        "   - **Q9 幻覺率與事實忠實度**：忠實度指標準確度達標且幻覺發生率控制於極低比例。"
     ]
-    add_formatted_bullets(tb_s12.text_frame, s12_bullets, font_size=13.0)
-    add_acronym_footer(s12, ["GenAI", "LLM", "garak", "NeMo", "OWASP"], y_pos=7.65, height=1.0)
+    add_formatted_bullets(tb_s12.text_frame, s12_bullets, font_size=12.5)
+    s12.shapes.add_picture(img_q8_s12, Inches(4.2), Inches(4.5), width=Inches(4.2))
+    add_acronym_footer(s12, ["GenAI", "LLM", "garak", "NeMo", "OWASP"], y_pos=7.60, height=1.0)
 
     # Slide 13: C類
     s13 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s13)
     add_header(s13, "C類 - 檢索增強生成 RAG 系統評測 SOP", "SECTION 3: SYSTEM-SPECIFIC AI EVALUATION SOP")
-    add_icon_card(s13, 0.8, 1.6, 14.4, 5.9, "📚", "RAG Systems Evaluation SOP", accent_color=BLUE)
+    add_icon_card(s13, 0.8, 1.6, 14.4, 5.9, "📚", "C類 - 檢索增強生成 RAG 評測 SOP", "RAG Systems Evaluation SOP", accent_color=BLUE)
     tb_s13 = s13.shapes.add_textbox(Inches(1.1), Inches(2.6), Inches(13.8), Inches(4.7))
     s13_bullets = [
         "1. **適用範疇與核心威脅**：適用於國防研發技術文件庫、公文探勘。防範段落錯置、虛構引用與資訊降密洩漏 (Declassification Leakage)。",
         "2. **評測 SOP 與代表性工具鏈**：運用 RAGAS 與 TruLens 三元組 (RAG Triad) 對 1,000 組問答對核對；於 Milvus 實施向量 RBAC 標籤動態遮罩。",
-        "3. **關鍵指標與合格門檻**：",
-        "   - **Q10 檢索精確度與歸屬**：$\mathrm{Context~Precision} \ge 0.90 \quad \wedge \quad \mathrm{Attribution} \ge 0.98$",
-        "   - **Q14 防降密洩漏率**：$R_{\mathrm{declass\_leak}} = 0\% \quad (\mathrm{RBAC~Output~Masking})$"
+        "3. **關鍵量化合格判定門檻**：",
+        "   - **Q10 檢索精確度與歸屬門檻**：",
+        "   - **Q14 防降密洩漏率門檻**：RBAC 輸出動態遮罩達到零降密洩漏風險。"
     ]
-    add_formatted_bullets(tb_s13.text_frame, s13_bullets, font_size=13.0)
-    add_acronym_footer(s13, ["RAG", "RAGAS", "RBAC"], y_pos=7.65, height=1.0)
+    add_formatted_bullets(tb_s13.text_frame, s13_bullets, font_size=12.5)
+    s13.shapes.add_picture(img_q10_s13, Inches(4.2), Inches(4.5), width=Inches(6.5))
+    add_acronym_footer(s13, ["RAG", "RAGAS", "RBAC"], y_pos=7.60, height=1.0)
 
     # Slide 14: D類
     s14 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s14)
     add_header(s14, "D類 - AI Agent 與多代理協同系統評測 SOP", "SECTION 3: SYSTEM-SPECIFIC AI EVALUATION SOP")
-    add_icon_card(s14, 0.8, 1.6, 14.4, 5.9, "🤖", "AI Agent & Multi-Agent Evaluation SOP", accent_color=DARK_BLUE)
+    add_icon_card(s14, 0.8, 1.6, 14.4, 5.9, "🤖", "D類 - AI Agent 系統評測 SOP", "AI Agent & Multi-Agent Evaluation SOP", accent_color=DARK_BLUE)
     tb_s14 = s14.shapes.add_textbox(Inches(1.1), Inches(2.6), Inches(13.8), Inches(4.7))
     s14_bullets = [
         "1. **適用範疇與核心威脅**：適用於自主網路防禦 Agent、戰術排程代理。防範軌跡偏移、越權 API 呼叫 (Tool Misuse) 與惡意指令刪除數據。",
         "2. **評測 SOP 與代表性工具鏈**：使用 AgentBench 記錄 Tool Call 軌跡；經由 Open Policy Agent (OPA) 與 SPIFFE/SPIRE 證書進行零信任策略攔截。",
-        "3. **關鍵指標與合格門檻**：",
-        "   - **Q11 Agent 工具調用合規**：$R_{\mathrm{unauth\_API}} = 0\% \quad \wedge \quad \mathrm{Task~Success} \ge 0.98$",
-        "   - **Q15 系統軌跡可追溯性**：$\mathrm{Log~Coverage} = 100\% \quad \wedge \quad t_{\mathrm{reproduction}} \le 10\mathrm{min}$"
+        "3. **關鍵量化合格判定門檻**：",
+        "   - **Q11 Agent 工具調用合規門檻**：",
+        "   - **Q15 系統軌跡可追溯性**：日誌涵蓋率達到 100% 且問題重現時間控制於 10 分鐘以內。"
     ]
-    add_formatted_bullets(tb_s14.text_frame, s14_bullets, font_size=13.0)
-    add_acronym_footer(s14, ["API", "OPA", "SPIFFE", "SPIRE"], y_pos=7.65, height=1.0)
+    add_formatted_bullets(tb_s14.text_frame, s14_bullets, font_size=12.5)
+    s14.shapes.add_picture(img_q11_s14, Inches(4.2), Inches(4.5), width=Inches(4.2))
+    add_acronym_footer(s14, ["API", "OPA", "SPIFFE", "SPIRE"], y_pos=7.60, height=1.0)
 
     # Slide 15: E類
     s15 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s15)
     add_header(s15, "E類 - 自主系統與人機協同評測 SOP", "SECTION 3: SYSTEM-SPECIFIC AI EVALUATION SOP")
-    add_icon_card(s15, 0.8, 1.6, 14.4, 5.9, "🚁", "Autonomous Systems & HMT Evaluation SOP", accent_color=BLUE)
+    add_icon_card(s15, 0.8, 1.6, 14.4, 5.9, "🚁", "E類 - 自主系統與 HMT 評測 SOP", "Autonomous Systems & HMT Evaluation SOP", accent_color=BLUE)
     tb_s15 = s15.shapes.add_textbox(Inches(1.1), Inches(2.6), Inches(13.8), Inches(4.7))
     s15_bullets = [
         "1. **適用範疇與交戰規則 (RoE)**：適用於無人機蜂群、自主武器。劃分 HITL (人在紐中/火力授權)、HOTL (人在紐上/實時監督)、HOOTL (完全自主/航路規劃)。",
         "2. **評測 SOP 與代表性工具鏈**：於 VBS 4 / EADSIM LVC 環境執行 100 次蒙地卡羅模擬；配合 ToAST 與 HITL 物理/邏輯雙重斷路器，遵循 DoDD 3000.09 指令。",
-        "3. **關鍵指標與合格門檻**：",
-        "   - **Q3 任務完成率**：$\mathrm{MSR} \ge 0.95 \quad (N = 100\text{ Runs})$",
-        "   - **Q4 可中止性與失效安全**：$\tau_{\mathrm{abort}} \le 100\text{ms} \quad \wedge \quad \mathrm{FailSafe} = 100\%$",
-        "   - **Q5 信任校準與過度依賴**：$\mathrm{ECE} \le 0.05 \quad \wedge \quad R_{\mathrm{overreliance}} \le 0.05$",
-        "   - **Q6 認知負荷與適應性**：$\Delta \mathrm{TLX} \ge 0.30 \quad \wedge \quad \Delta t_{\mathrm{decision}} \le 2.0\text{s}$ (NASA-TLX, EEG)"
+        "3. **關鍵量化合格判定門檻**：",
+        "   - **Q3 任務完成率門檻**：",
+        "   - **Q4 可中止性與失效安全**：中斷回應時間控制於 100ms 內且失效保護成功率達標。",
+        "   - **Q5 信任校準與過度依賴**：期望校準誤差評估達標且過度依賴比例極低。",
+        "   - **Q6 認知負荷與適應性**：NASA-TLX 心理負荷與決策反應時間優化指標 (NASA-TLX, EEG)"
     ]
     add_formatted_bullets(tb_s15.text_frame, s15_bullets, font_size=12.5)
-    add_acronym_footer(s15, ["RoE", "HITL", "HOTL", "HOOTL", "VBS", "EADSIM", "LVC", "ToAST", "DoDD", "MSR", "ECE", "NASA-TLX", "EEG"], y_pos=7.65, height=1.0)
+    s15.shapes.add_picture(img_q3_s15, Inches(3.5), Inches(4.5), width=Inches(3.2))
+    add_acronym_footer(s15, ["RoE", "HITL", "HOTL", "HOOTL", "VBS", "EADSIM", "LVC", "ToAST", "DoDD", "MSR", "ECE", "NASA-TLX", "EEG"], y_pos=7.60, height=1.0)
 
     # Slide 16: F類
     s16 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s16)
     add_header(s16, "F類 - 決策支援與預測分析評測 SOP", "SECTION 3: SYSTEM-SPECIFIC AI EVALUATION SOP")
-    add_icon_card(s16, 0.8, 1.6, 14.4, 5.9, "📈", "Predictive Analytics & C2 Evaluation SOP", accent_color=DARK_BLUE)
+    add_icon_card(s16, 0.8, 1.6, 14.4, 5.9, "📈", "F類 - 預測分析評測 SOP", "Predictive Analytics & C2 Evaluation SOP", accent_color=DARK_BLUE)
     tb_s16 = s16.shapes.add_textbox(Inches(1.1), Inches(2.6), Inches(13.8), Inches(4.7))
     s16_bullets = [
         "1. **適用範疇與核心威脅**：適用於聲納/雷達特徵識別、擊殺鏈 (Kill Chain) 決策輔助。防範戰場概念漂移 (Concept Drift) 與 OOD 數據高信心誤判。",
         "2. **評測 SOP 與代表性工具鏈**：部署 PyOD 與 Alibi 警報模組；採用 MC-Dropout 生成預測方差；日誌完整留存傳感器數據、Confidence Score 與 COA 建議。",
-        "3. **關鍵指標與合格門檻**：",
-        "   - **Q12 概念與數據漂移監控率**：$\mathrm{Drift~Recall} \ge 0.95 \quad \wedge \quad t_{\mathrm{alarm}} \le 5\mathrm{min}$",
-        "   - **Q13 不確定性量化 (UQ)**：$\mathrm{OOD~Variance~Coverage} \ge 0.95 \quad (95\%)$",
+        "3. **關鍵量化合格判定門檻**：",
+        "   - **Q12 概念與數據漂移監控門檻**：",
+        "   - **Q13 不確定性量化 (UQ)**：OOD 方差覆蓋率高於 95%。",
         "   - **Q15 軌跡可追溯性**：高保真日誌包含傳感器數據、Confidence Score 與 COA ($t_{\mathrm{repro}} \le 10\text{min}$)"
     ]
-    add_formatted_bullets(tb_s16.text_frame, s16_bullets, font_size=13.0)
-    add_acronym_footer(s16, ["PyOD", "OOD", "UQ", "MC-Dropout", "COA"], y_pos=7.65, height=1.0)
+    add_formatted_bullets(tb_s16.text_frame, s16_bullets, font_size=12.5)
+    s16.shapes.add_picture(img_q12_s16, Inches(4.2), Inches(4.5), width=Inches(6.5))
+    add_acronym_footer(s16, ["PyOD", "OOD", "UQ", "MC-Dropout", "COA"], y_pos=7.60, height=1.0)
 
     # ----------------------------------------------------
     # SECTION 4: Slides 17-25 (15 Quantitative Metrics)
-    # Requirement 5: Move bottom footnote area UP on Slide 17 & 18 for breathing room!
-    # Requirement 6: Purge ALL "(LaTeX 渲染公式)" or "(LaTeX 編譯渲染結果)" text strings!
     # ----------------------------------------------------
     s17 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s17)
@@ -549,16 +553,15 @@ def generate_33_slides_master_deck():
     tf_17.word_wrap = True
 
     m_summary = [
-        "1. **Q1 對抗韌性**：$\mathrm{Acc}_{\mathrm{adv}}/\mathrm{Acc}_{\mathrm{clean}} \ge 0.90$  |  2. **Q2 自然穩健性**：$\Delta \mathrm{mAP} \le 0.10$  |  3. **Q3 任務完成率**：$\mathrm{MSR} \ge 0.95$",
-        "4. **Q4 可中止性**：$\tau_{\mathrm{abort}} \le 100\text{ms} \wedge \mathrm{FailSafe} = 100\%$  |  5. **Q5 信任校準**：$\mathrm{ECE} \le 0.05$  |  6. **Q6 認知負荷**：$\Delta \mathrm{TLX} \ge 0.30$",
-        "7. **Q7 可解釋性**：$\mathrm{Point~Game} \ge 0.85$  |  8. **Q8 提示越獄**：$R_{\mathrm{jailbreak\_def}} \ge 0.99$  |  9. **Q9 幻覺率**：$\mathrm{Faithfulness} \ge 0.95$",
-        "10. **Q10 檢索精確度**：$\mathrm{Precision} \ge 0.90$  |  11. **Q11 Agent合規**：$R_{\mathrm{unauth\_API}} = 0\%$  |  12. **Q12 漂移召回**：$\mathrm{Recall} \ge 0.95$",
-        "13. **Q13 不確定性量化**：$\mathrm{OOD~Coverage} \ge 0.95$  |  14. **Q14 防降密**：$R_{\mathrm{declass\_leak}} = 0\%$  |  15. **Q15 軌跡追溯**：$\mathrm{Log~Coverage} = 100\%$"
+        "1. **Q1 對抗韌性**：對抗樣本識別維持率標竿  |  2. **Q2 自然穩健性**：氣候干擾降質控制  |  3. **Q3 任務完成率**：端到端擊殺鏈閉合率",
+        "4. **Q4 可中止性**：100ms 內安全中斷保護  |  5. **Q5 信任校準**：期望校準誤差極低化  |  6. **Q6 認知負荷**：NASA-TLX 心理負載降低",
+        "7. **Q7 可解釋性**：Point Game 特徵熱力圖  |  8. **Q8 提示越獄**：99% 以上對抗注入阻絕  |  9. **Q9 幻覺率**：事實忠實度高滿定",
+        "10. **Q10 檢索精確度**：RAG 檢索精確與歸屬  |  11. **Q11 Agent合規**：零越權 API 呼叫事故  |  12. **Q12 漂移召回**：戰場概念漂移即時告警",
+        "13. **Q13 不確定性量化**：OOD 方差覆蓋達標  |  14. **Q14 防降密**：RBAC 零資訊降密洩漏  |  15. **Q15 軌跡追溯**：日誌全覆蓋與 10 分鐘重現"
     ]
     add_formatted_bullets(tf_17, m_summary, font_size=12.5)
 
-    # Requirement 5: Slide 17 Appendix Pointer Card moved UP to y=6.0 with comfortable padding
-    card_ptr = s17.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(6.0), Inches(14.4), Inches(1.25))
+    card_ptr = s17.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(6.1), Inches(14.4), Inches(1.15))
     card_ptr.fill.solid()
     card_ptr.fill.fore_color.rgb = RGBColor(239, 246, 255)
     card_ptr.line.color.rgb = BLUE
@@ -567,21 +570,19 @@ def generate_33_slides_master_deck():
     tf_ptr = card_ptr.text_frame
     tf_ptr.word_wrap = True
     p_ptr_h = tf_ptr.paragraphs[0]
-    p_ptr_h.text = "📌 附件參考說明 (Appendix Reference Note & Detailed Walkthrough Pointer):"
+    p_ptr_h.text = "📌 附件參考說明："
     p_ptr_h.font.size = Pt(11)
     p_ptr_h.font.bold = True
     p_ptr_h.font.color.rgb = BLUE
     p_ptr_h.font.name = "微軟正黑體"
 
     p_ptr_b = tf_ptr.add_paragraph()
-    ptr_str = "本頁面為 15 項 AI 量化評測指標與合格門檻總覽。各指標之**詳細測試 SOP 實施步驟**、**代表性測試工具鏈 (ART, garak, RAGAS, PyOD)**、**對抗攻防演練**與 **Obsidian 雙腦筆記架構**，請參閱後附獨立附件檔案 [AIEC_15_Quantitative_Metrics_SOP.pptx](file:///c:/Users/administartor/Downloads/AIEC/AIEC_15_Quantitative_Metrics_SOP.pptx) 與 [[AIEC 15 項量化評測指標與 SOP]]。"
-    add_formatted_text(p_ptr_b, ptr_str, font_size=10.0, default_color=NAVY, bold_color=BLUE)
+    ptr_str = "本頁面為 15 項 AI 量化評測指標與合格門檻總覽。關於各指標之**詳細驗測 SOP 實施步驟、工具鏈及雙腦筆記**，請直接參閱後附獨立附件檔案 [AIEC_15_Quantitative_Metrics_SOP.pptx](file:///c:/Users/administartor/Downloads/AIEC/AIEC_15_Quantitative_Metrics_SOP.pptx) 與簡報附件。"
+    add_formatted_text(p_ptr_b, ptr_str, font_size=10.5, default_color=NAVY, bold_color=BLUE)
 
-    # Requirement 5: Acronym footer moved to y=7.55 for spacious breathing room!
-    add_acronym_footer(s17, ["Acc_adv", "Acc_clean", "mAP", "MSR", "ECE", "garak", "PyOD", "ART", "RAGAS", "SOP"], y_pos=7.55, height=1.1)
+    add_acronym_footer(s17, ["Acc_adv", "Acc_clean", "mAP", "MSR", "ECE", "garak", "PyOD", "ART", "RAGAS", "SOP"], y_pos=7.60, height=1.0)
 
     # Metrics list for Slides 18-25
-    # Requirement 6: PURGED "(LaTeX 渲染公式)" from all left/right bullets!
     metrics_list = [
         {"id": 1, "name_zh": "對抗韌性", "name_en": "Adversarial Robustness", "def": "模型遭受對抗貼片、FGSM/PGD 漸進式擾動攻擊時維護正確判讀與目標識別的能力。", "latex_calc": r'\mathrm{Robustness~Ratio} = \frac{\mathrm{Acc}_{\mathrm{adv}}(\mathcal{D}_{\mathrm{test}}, \epsilon)}{\mathrm{Acc}_{\mathrm{clean}}(\mathcal{D}_{\mathrm{test}})}', "scope": "A類 電腦視覺 (CV)、目標偵測與影像分類演算法模型", "risk": "敵方附著對抗貼片引發目標誤判、漏報或偽裝欺騙", "sop": "使用 IBM ART 360 / HEART 對輸入樣本注入 ε 漸進式對抗擾動，量測判讀降質與 mAP 變化率。", "tools": "IBM ART 360, HEART Framework, FGSM, PGD Attack Engine", "latex_thresh": r'\mathrm{PASS:}~\frac{\mathrm{Acc}_{\mathrm{adv}}}{\mathrm{Acc}_{\mathrm{clean}}} \geq 0.90 \quad (\epsilon \leq 0.05)', "audit": "產出對抗擾動強度與 Acc 衰減曲線圖，納入 ISO 42001 驗測報告", "std": "MITRE ATLAS (AML.T0015) / NIST AI RMF 1.0 (Measure 2.1)", "acronyms": ["Acc_adv", "Acc_clean", "FGSM", "PGD", "mAP", "ART", "HEART", "MITRE", "ATLAS", "NIST", "RMF", "ISO"]},
         {"id": 2, "name_zh": "自然穩健性", "name_en": "Natural Robustness", "def": "模型面對自然環境干擾（雨雪、煙霧、電戰雜訊、光影突變）時的效能維持能力。", "latex_calc": r'\Delta \mathrm{mAP} = \frac{\mathrm{mAP}_{\mathrm{clean}} - \mathrm{mAP}_{\mathrm{noise}}(\eta)}{\mathrm{mAP}_{\mathrm{clean}}}', "scope": "A類 電腦視覺 (CV)、雷達 ISR 影像與感測器融合系統", "risk": "極端氣候或電戰環境干擾導致目標偵測精度暴降或系統失效", "sop": "透過 NRTK 工具包合成 10 種等級的環境降質數據集進行壓力測試，對比清晰數據集效能。", "tools": "NRTK (Natural Robustness Toolkit), ImageNet-C benchmark", "latex_thresh": r'\mathrm{PASS:}~\Delta \mathrm{mAP} \leq 0.10 \quad (10\%~\mathrm{Limit})', "audit": "記錄不同天候降質條件下之精度衰減曲線，作為部署前確效數據", "std": "JATIC 共通構面 1 / DoD CDAO AI T&E Guidebook", "acronyms": ["mAP", "NRTK", "JATIC", "DoD", "CDAO", "T&E"]},
@@ -603,7 +604,6 @@ def generate_33_slides_master_deck():
 
         add_icon_card(s_m, 0.8, 1.5, 7.0, 5.9, "📌", "指標定義與計算公式", "Metric Definition & Rendered Math", accent_color=BLUE)
         tb_l = s_m.shapes.add_textbox(Inches(1.1), Inches(2.5), Inches(6.4), Inches(1.3))
-        # Requirement 6: Pure text without "(LaTeX 渲染公式)"
         left_bullets_top = [f"1. **核心指標定義**：{m['def']}", "2. **量化計算數學公式**："]
         add_formatted_bullets(tb_l.text_frame, left_bullets_top, font_size=12.5)
         s_m.shapes.add_picture(calc_img, Inches(1.3), Inches(3.6), width=Inches(6.0))
@@ -614,7 +614,6 @@ def generate_33_slides_master_deck():
 
         add_icon_card(s_m, 8.2, 1.5, 7.0, 5.9, "🧪", "驗測 SOP 與合格判定門檻", "Testing SOP & Pass Threshold Math", accent_color=DARK_BLUE)
         tb_r = s_m.shapes.add_textbox(Inches(8.5), Inches(2.5), Inches(6.4), Inches(1.3))
-        # Requirement 6: Pure text without "(LaTeX 渲染公式)"
         right_bullets_top = [f"1. **驗測 SOP 實施步驟**：{m['sop']}", f"2. **代表性測試工具鏈**：{m['tools']}", "3. **量化合格門檻公式**："]
         add_formatted_bullets(tb_r.text_frame, right_bullets_top, font_size=12.5)
         s_m.shapes.add_picture(thresh_img, Inches(8.7), Inches(4.3), width=Inches(6.0))
@@ -623,21 +622,15 @@ def generate_33_slides_master_deck():
         right_bullets_bot = [f"4. **合規稽核與紀錄規範**：{m['audit']}"]
         add_formatted_bullets(tb_r_bot.text_frame, right_bullets_bot, font_size=12.5)
 
-        # Requirement 5: Move acronym footer UP to y=7.55 for Slide 18 & all metric slides!
-        add_acronym_footer(s_m, m['acronyms'], y_pos=7.55, height=1.1)
+        add_acronym_footer(s_m, m['acronyms'], y_pos=7.60, height=1.0)
 
     # ----------------------------------------------------
     # SECTION 5: Slides 26-29 - Platforms & Infrastructure
-    # Requirement 7: DELETED Slide 29 (AI CLI與Cron) !
-    # Slide 26: 主權 AI 平台與四層 LLM 堆疊
-    # Slide 27: 地端 LLM 推論引擎與 Middleware
-    # Slide 28: Lattice 戰術 C2 架構與 Menace 邊緣算力節點
-    # Slide 29: 聯邦學習 (Federated Learning) 國防保密策略
     # ----------------------------------------------------
     s26 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s26)
     add_header(s26, "主權 AI 平台與四層 LLM 算力堆疊", "SECTION 5: EVALUATION PLATFORMS & AUTOMATED T&E")
-    add_icon_card(s26, 0.8, 1.6, 14.4, 5.9, "🏛️", "Sovereign AI Platform & 4-Tier Compute Stack", accent_color=BLUE)
+    add_icon_card(s26, 0.8, 1.6, 14.4, 5.9, "🏛️", "主權 AI 平台與四層 LLM 算力堆疊", "Sovereign AI Platform & 4-Tier Compute Stack", accent_color=BLUE)
     tb_s26 = s26.shapes.add_textbox(Inches(1.1), Inches(2.6), Inches(13.8), Inches(4.7))
     s26_bullets = [
         "1. **民雄院區國家級主權算力**：100% 地端實體隔離 (Air-Gapped) 設施，具備電力韌性、物理防護與演算法安全機制。",
@@ -647,12 +640,12 @@ def generate_33_slides_master_deck():
         "5. **Tier 4: 受控雲端 API 閘道 (Gated Cloud API)**：僅開放非密級資料探勘，設有 SPIFFE/OPA 策略驗證。"
     ]
     add_formatted_bullets(tb_s26.text_frame, s26_bullets, font_size=13.0)
-    add_acronym_footer(s26, ["MoE", "GGUF", "API", "SPIFFE", "OPA"], y_pos=7.65, height=1.0)
+    add_acronym_footer(s26, ["MoE", "GGUF", "API", "SPIFFE", "OPA"], y_pos=7.60, height=1.0)
 
     s27 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s27)
     add_header(s27, "地端 LLM 推論引擎與 Middleware 工具鏈", "SECTION 5: EVALUATION PLATFORMS & AUTOMATED T&E")
-    add_icon_card(s27, 0.8, 1.6, 14.4, 5.9, "⚙️", "On-Prem LLM Inference Engine & Middleware", accent_color=DARK_BLUE)
+    add_icon_card(s27, 0.8, 1.6, 14.4, 5.9, "⚙️", "地端 LLM 推論引擎與 Middleware 工具鏈", "On-Prem LLM Inference Engine & Middleware", accent_color=DARK_BLUE)
     tb_s27 = s27.shapes.add_textbox(Inches(1.1), Inches(2.6), Inches(13.8), Inches(4.7))
     s27_bullets = [
         "1. **地端模型蒸餾與微調 (On-Prem Distillation & Fine-tuning)**：將 70B 教師模型知識蒸餾 (Distillation) 至 Gemma 4 本地模型，進行 LoRA 輕量化微調。",
@@ -661,12 +654,12 @@ def generate_33_slides_master_deck():
         "4. **Data & Model Provenance 溯源**：紀錄資料清洗規則、模型超參數版本號與 Checkpoint 雜湊值。"
     ]
     add_formatted_bullets(tb_s27.text_frame, s27_bullets, font_size=13.0)
-    add_acronym_footer(s27, ["LLM", "vLLM", "GGUF", "LoRA", "SOP"], y_pos=7.65, height=1.0)
+    add_acronym_footer(s27, ["LLM", "vLLM", "GGUF", "LoRA", "SOP"], y_pos=7.60, height=1.0)
 
     s28 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s28)
     add_header(s28, "Lattice 戰術 C2 架構與 Menace 邊緣算力節點", "SECTION 5: EVALUATION PLATFORMS & AUTOMATED T&E")
-    add_icon_card(s28, 0.8, 1.6, 14.4, 5.9, "📡", "Tactical C2 Architecture & Edge Compute Nodes", accent_color=BLUE)
+    add_icon_card(s28, 0.8, 1.6, 14.4, 5.9, "📡", "Lattice 戰術 C2 架構與 Menace 邊緣算力節點", "Tactical C2 Architecture & Edge Compute Nodes", accent_color=BLUE)
     tb_s28 = s28.shapes.add_textbox(Inches(1.1), Inches(2.6), Inches(13.8), Inches(4.7))
     s28_bullets = [
         "1. **JADC2 全領域指管對接**：整合異質指管系統（如將本地飛彈陣地數據與商用 C2 平台對接）。",
@@ -675,12 +668,12 @@ def generate_33_slides_master_deck():
         "4. **通訊中斷保護**：具備邊緣斷網自主運轉與復網後數據自動差分同步能力。"
     ]
     add_formatted_bullets(tb_s28.text_frame, s28_bullets, font_size=13.0)
-    add_acronym_footer(s28, ["C2", "JADC2", "API", "SPIFFE", "SPIRE", "OPA"], y_pos=7.65, height=1.0)
+    add_acronym_footer(s28, ["C2", "JADC2", "API", "SPIFFE", "SPIRE", "OPA"], y_pos=7.60, height=1.0)
 
     s29 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s29)
     add_header(s29, "聯邦學習 (Federated Learning) 國防保密策略", "SECTION 5: EVALUATION PLATFORMS & AUTOMATED T&E")
-    add_icon_card(s29, 0.8, 1.6, 14.4, 5.9, "🤝", "Federated Learning Strategy & Parameter Fusion", accent_color=BLUE)
+    add_icon_card(s29, 0.8, 1.6, 14.4, 5.9, "🤝", "聯邦學習 (Federated Learning) 國防保密策略", "Federated Learning Strategy & Parameter Fusion", accent_color=BLUE)
     tb_s29 = s29.shapes.add_textbox(Inches(1.1), Inches(2.6), Inches(13.8), Inches(4.7))
     s29_bullets = [
         "1. **「模型移動，資料不動」原則**：跨防空陣地、雷達站與艦隊聯合訓練時，原始作戰數據嚴禁傳出本地戰術網段。",
@@ -689,21 +682,16 @@ def generate_33_slides_master_deck():
         "4. **同態加密 (Homomorphic Encryption)**：對上傳參數進行同態加密，中央節點直接在密文空間執行參數融合。"
     ]
     add_formatted_bullets(tb_s29.text_frame, s29_bullets, font_size=13.0)
-    add_acronym_footer(s29, ["DP", "FedAvg"], y_pos=7.65, height=1.0)
+    add_acronym_footer(s29, ["DP", "FedAvg"], y_pos=7.60, height=1.0)
 
     # ----------------------------------------------------
     # SECTION 6: Slides 30-33 - Advanced Defense AI Security & Infrastructure
-    # Requirement 10: Compile ALL LaTeX math expressions on Slides 30-33 into rendered math images!
-    # Requirement 8: Slide 30 Footnote -> Add YOLO, SAM!
-    # Requirement 9: Slide 31 Footnote -> Add ROE / RoE!
     # ----------------------------------------------------
-
-    # Render LaTeX images for Section 6
     img_tau_abort = render_latex_to_png(r'\tau_{\mathrm{abort}} \leq 100\mathrm{ms}', 'sec6_tau_abort.png')
     img_r_declass = render_latex_to_png(r'R_{\mathrm{declass\_leak}} = 0\%', 'sec6_r_declass.png')
     img_ece_val = render_latex_to_png(r'\mathrm{ECE} \leq 0.05', 'sec6_ece.png')
 
-    # Slide 30 (NCSIST 藍圖 - Requirement 8: Add YOLO & SAM to footnote)
+    # Slide 30 (NCSIST 藍圖)
     s30 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s30)
     add_header(s30, "NCSIST AIEC 國防 AI 評測總體藍圖與 5 大戰術柱石", "SECTION 6: ADVANCED DEFENSE AI SECURITY & INFRASTRUCTURE")
@@ -727,10 +715,9 @@ def generate_33_slides_master_deck():
         "5. **供應鏈安全檢查**：審查開源模型與第三方 SDK 後門及邏輯合規。"
     ]
     add_formatted_bullets(tb_s30_r.text_frame, s30_r_bullets, font_size=12.5)
-    # Requirement 8: Add YOLO and SAM to Slide 30 Footnote!
-    add_acronym_footer(s30, ["NCSIST", "AIEC", "ATLAS", "YOLO", "SAM", "RoE", "HITL", "HOTL", "HOOTL", "CMMC", "TRL", "SOP"], y_pos=7.55, height=1.1)
+    add_acronym_footer(s30, ["NCSIST", "AIEC", "ATLAS", "YOLO", "SAM", "RoE", "HITL", "HOTL", "HOOTL", "CMMC", "TRL", "SOP"], y_pos=7.60, height=1.0)
 
-    # Slide 31 (RoE 邊界 - Requirement 9: Add ROE / RoE to footnote)
+    # Slide 31 (RoE 邊界)
     s31 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s31)
     add_header(s31, "國防 AIEC 核心任務與交戰規則 (RoE) 授權邊界", "SECTION 6: ADVANCED DEFENSE AI SECURITY & INFRASTRUCTURE")
@@ -745,7 +732,6 @@ def generate_33_slides_master_deck():
         "5. **供應鏈後門審查**：嚴格審查開源模型與 SDK 演算法後門。"
     ]
     add_formatted_bullets(tb_s31_l.text_frame, s31_l_bullets, font_size=12.5)
-    # Embed rendered LaTeX image for RAG anti-declassification rate on Slide 31
     s31.shapes.add_picture(img_r_declass, Inches(1.3), Inches(4.5), width=Inches(5.0))
 
     add_icon_card(s31, 8.2, 1.5, 7.0, 5.9, "⚖️", "RoE 人機授權三階權能邊界", "Three-Tier Autonomy Boundary (RoE)", accent_color=DARK_BLUE)
@@ -756,10 +742,9 @@ def generate_33_slides_master_deck():
         "3. **Human-out-of-the-loop (HOOTL / 完全自主)**：僅限於蜂群無人機航路規劃與偵察等非致傷性任務。"
     ]
     add_formatted_bullets(tb_s31_r.text_frame, s31_r_bullets, font_size=12.5)
-    # Requirement 9: Add ROE / RoE to Slide 31 Footnote!
-    add_acronym_footer(s31, ["ROE", "RoE", "HITL", "HOTL", "HOOTL", "LVC", "VBS", "EADSIM", "RAG", "RBAC", "TRL"], y_pos=7.55, height=1.1)
+    add_acronym_footer(s31, ["ROE", "RoE", "HITL", "HOTL", "HOOTL", "LVC", "VBS", "EADSIM", "RAG", "RBAC", "TRL"], y_pos=7.60, height=1.0)
 
-    # Slide 32 (邊緣自毀 - Requirement 10: Render LaTeX math equations)
+    # Slide 32 (邊緣自毀)
     s32 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s32)
     add_header(s32, "戰術邊緣硬體安全與模型緊急自毀機制", "SECTION 6: ADVANCED DEFENSE AI SECURITY & INFRASTRUCTURE")
@@ -781,11 +766,10 @@ def generate_33_slides_master_deck():
         "3. **物理零化 (Zeroization)**：隨機化金鑰熔絲 (Key Fusing)，防止敵方逆向工程與模型竊取。"
     ]
     add_formatted_bullets(tb_s32_r.text_frame, s32_r_bullets, font_size=12.5)
-    # Requirement 10: Render LaTeX math equation img_tau_abort on Slide 32!
     s32.shapes.add_picture(img_tau_abort, Inches(8.7), Inches(3.2), width=Inches(5.0))
-    add_acronym_footer(s32, ["GPS", "Mesh", "TPM", "RAM", "Flash"], y_pos=7.55, height=1.1)
+    add_acronym_footer(s32, ["GPS", "Mesh", "TPM", "RAM", "Flash"], y_pos=7.60, height=1.0)
 
-    # Slide 33 (地端蒸餾與 Provenance - Requirement 10: Render LaTeX math equations)
+    # Slide 33 (地端蒸餾與 Provenance)
     s33 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s33)
     add_header(s33, "地端模型蒸餾、資料與模型溯源 SOP", "SECTION 6: ADVANCED DEFENSE AI SECURITY & INFRASTRUCTURE")
@@ -807,9 +791,8 @@ def generate_33_slides_master_deck():
         "3. **信心分數 (Confidence Score) 校準**：所有模型輸出伴隨 Confidence Score，確保期望校準誤差指標滿定："
     ]
     add_formatted_bullets(tb_s33_r.text_frame, s33_r_bullets, font_size=12.5)
-    # Requirement 10: Render LaTeX math equation img_ece_val on Slide 33!
     s33.shapes.add_picture(img_ece_val, Inches(8.7), Inches(4.7), width=Inches(4.5))
-    add_acronym_footer(s33, ["LLM", "LoRA", "GGUF", "ECE", "SOP"], y_pos=7.55, height=1.1)
+    add_acronym_footer(s33, ["LLM", "LoRA", "GGUF", "ECE", "SOP"], y_pos=7.60, height=1.0)
 
     out_dir = r'c:\Users\administartor\Downloads\AIEC'
     out_path = os.path.join(out_dir, 'AIEC_AI_Evaluation_30_Slides_NanoBanana.pptx')
