@@ -155,11 +155,11 @@ def build_metric_single_slide(prs, blank_layout, metric_data, acronym_keys):
     thresh_img = render_latex_to_png(metric_data['latex_thresh'], f"thresh_q{metric_data['id']}.png")
 
     # Left Card: Definition, Math Formula & Scope
-    add_icon_card(s, 0.8, 1.6, 7.0, 6.25, "📌", f"指標定義與編譯後數學公式", "Metric Definition & Rendered Math", accent_color=BLUE)
+    add_icon_card(s, 0.8, 1.6, 7.0, 6.25, "📌", f"指標定義與計算公式", "Metric Definition & Rendered Math", accent_color=BLUE)
     tb_l = s.shapes.add_textbox(Inches(1.1), Inches(2.7), Inches(6.4), Inches(1.5))
     left_bullets_top = [
         f"1. **核心指標定義**：{metric_data['def']}",
-        "2. **量化計算數學公式 (LaTeX 編譯渲染結果)**："
+        "2. **量化計算數學公式**："
     ]
     add_formatted_bullets(tb_l.text_frame, left_bullets_top, font_size=13)
 
@@ -174,12 +174,12 @@ def build_metric_single_slide(prs, blank_layout, metric_data, acronym_keys):
     add_formatted_bullets(tb_l_bot.text_frame, left_bullets_bot, font_size=13)
 
     # Right Card: SOP, Toolkits & Pass Threshold Formula Image
-    add_icon_card(s, 8.2, 1.6, 7.0, 6.25, "🧪", f"驗測 SOP 與合格判定門檻公式", "Testing SOP & Pass Threshold Math", accent_color=DARK_BLUE)
+    add_icon_card(s, 8.2, 1.6, 7.0, 6.25, "🧪", f"驗測 SOP 與合格判定門檻", "Testing SOP & Pass Threshold Math", accent_color=DARK_BLUE)
     tb_r = s.shapes.add_textbox(Inches(8.5), Inches(2.7), Inches(6.4), Inches(1.5))
     right_bullets_top = [
         f"1. **驗測 SOP 實施步驟**：{metric_data['sop']}",
         f"2. **代表性測試工具鏈**：{metric_data['tools']}",
-        "3. **量化合格門檻公式 (LaTeX 編譯渲染結果)**："
+        "3. **量化合格門檻公式**："
     ]
     add_formatted_bullets(tb_r.text_frame, right_bullets_top, font_size=13)
 
@@ -195,12 +195,77 @@ def build_metric_single_slide(prs, blank_layout, metric_data, acronym_keys):
     add_acronym_footer(s, acronym_keys, y_pos=7.95, height=0.9)
     return s
 
-def generate_15_metrics_deck():
+def generate_15_metrics_sop_deck():
     prs = Presentation()
     prs.slide_width = Inches(16)
     prs.slide_height = Inches(9)
     blank_layout = prs.slide_layouts[6]
 
+    NAVY = RGBColor(12, 35, 64)
+    BLUE = RGBColor(37, 99, 235)
+
+    # ----------------------------------------------------
+    # Slide 1: COVER SLIDE
+    # ----------------------------------------------------
+    s1 = prs.slides.add_slide(blank_layout)
+    set_pure_white_bg(s1)
+
+    cover_card = s1.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(0.8), Inches(0.6), Inches(14.4), Inches(7.8))
+    cover_card.fill.solid()
+    cover_card.fill.fore_color.rgb = NAVY
+    cover_card.line.fill.background()
+
+    badge = s1.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(1.3), Inches(1.1), Inches(6.5), Inches(0.55))
+    badge.fill.solid()
+    badge.fill.fore_color.rgb = BLUE
+    badge.line.fill.background()
+    p = badge.text_frame.paragraphs[0]
+    p.text = "🛡️ AIEC 國防與企業級 AI 專屬評測與驗測 SOP 附件"
+    p.alignment = PP_ALIGN.CENTER
+    p.font.size = Pt(16)
+    p.font.bold = True
+    p.font.color.rgb = RGBColor(255, 255, 255)
+    p.font.name = "微軟正黑體"
+
+    tb1 = s1.shapes.add_textbox(Inches(1.3), Inches(1.9), Inches(13.4), Inches(2.0))
+    tf1 = tb1.text_frame
+    tf1.word_wrap = True
+    p = tf1.paragraphs[0]
+    p.text = "附件 AIEC 15 項量化評測指標與驗測 SOP"
+    p.font.size = Pt(36)
+    p.font.bold = True
+    p.font.color.rgb = RGBColor(255, 255, 255)
+    p.font.name = "微軟正黑體"
+
+    tb_sub = s1.shapes.add_textbox(Inches(1.3), Inches(4.2), Inches(13.4), Inches(2.5))
+    tf_sub = tb_sub.text_frame
+    tf_sub.word_wrap = True
+
+    cover_bullets = [
+        "1. **權威標準對齊**：精準融合 NIST AI RMF 1.0 (Measure), DoD CDAO AI T&E, ISO 42001 (AIMS) 與 MITRE ATLAS",
+        "2. **15 項量化指標全集**：涵蓋對抗韌性、自然穩健性、MSR、可中止性、信任校準、garak/RAGAS 測試、Agent 軌跡等 15 項指標",
+        "3. **精確數學公式與門檻**：提供完整演算法計算公式、代表性測試工具鏈 (ART, garak, RAGAS, PyOD) 及明確 Pass/Fail 合格判定門檻"
+    ]
+    add_formatted_bullets(tf_sub, cover_bullets, font_size=15.5, text_color=RGBColor(226, 232, 240), bold_color=RGBColor(255, 255, 255))
+
+    tb_foot1 = s1.shapes.add_textbox(Inches(1.3), Inches(6.8), Inches(13.4), Inches(1.2))
+    tf_f1 = tb_foot1.text_frame
+    tf_f1.word_wrap = True
+    p_f1 = tf_f1.paragraphs[0]
+    p_f1.text = "📌 頁面核心英文縮寫全稱 (Core Acronym Footnotes):"
+    p_f1.font.size = Pt(11)
+    p_f1.font.bold = True
+    p_f1.font.color.rgb = BLUE
+    p_f1.font.name = "微軟正黑體"
+
+    s1_acronyms = ["AIEC", "NIST", "RMF", "DoD", "CDAO", "T&E", "ISO", "AIMS", "MITRE", "ATLAS", "SOP"]
+    f1_str = "  |  ".join([f"**{k}**: {ACRONYM_DB[k][0]} ({ACRONYM_DB[k][1]})" for k in s1_acronyms if k in ACRONYM_DB])
+    p_f1_b = tf_f1.add_paragraph()
+    add_formatted_text(p_f1_b, f1_str, font_size=9.5, default_color=RGBColor(203, 213, 225), bold_color=RGBColor(255, 255, 255))
+
+    # ----------------------------------------------------
+    # Slides 2~16: 15 Metric Slides
+    # ----------------------------------------------------
     metrics_list = [
         {
             "id": 1, "name_zh": "對抗韌性", "name_en": "Adversarial Robustness",
@@ -399,14 +464,14 @@ def generate_15_metrics_deck():
         }
     ]
 
-    out_dir = r'c:\Users\administartor\Downloads\AIEC'
-    out_path = os.path.join(out_dir, 'AIEC_15_Quantitative_Metrics_SOP.pptx')
-
     for idx, m in enumerate(metrics_list):
         build_metric_single_slide(prs, blank_layout, m, m['acronyms'])
 
-    prs.save(out_path)
-    print(f'Successfully generated standalone 15-slide presentation with rendered math PNGs at: {out_path}')
+    out_dir = r'c:\Users\administartor\Downloads\AIEC'
+    out_path_sop = os.path.join(out_dir, 'AIEC_15_Quantitative_Metrics_SOP.pptx')
+
+    prs.save(out_path_sop)
+    print(f'Successfully generated 16-slide presentation (with Cover Slide & clean math labels) at: {out_path_sop}')
 
 if __name__ == '__main__':
-    generate_15_metrics_deck()
+    generate_15_metrics_sop_deck()
