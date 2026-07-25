@@ -254,7 +254,7 @@ def build_30_ai_eval_deck():
         return s
 
     # ----------------------------------------------------
-    # Slide 1: Cover Slide (MODIFIED: Removed bullet #4)
+    # Slide 1: Cover Slide
     # ----------------------------------------------------
     s1 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s1)
@@ -290,7 +290,6 @@ def build_30_ai_eval_deck():
     tf_sub = tb_sub.text_frame
     tf_sub.word_wrap = True
 
-    # Bullet #4 REMOVED as requested by user
     cover_bullets = [
         "1. **評測標準整合**：精準融合 NIST AI RMF (Measure), DoD CDAO AI T&E, ISO 42001 與 MITRE ATLAS",
         "2. **15 項量化評測 SOP**：涵蓋對抗韌性、自然穩健性、MSR、可中止性、信任校準、garak/RAGAS 測試",
@@ -314,13 +313,12 @@ def build_30_ai_eval_deck():
     add_formatted_text(p_f1_b, f1_str, font_size=9, default_color=RGBColor(203, 213, 225), bold_color=RGBColor(255, 255, 255))
 
     # ----------------------------------------------------
-    # Slide 2: Table of Contents (MODIFIED: Replaced with TOC)
+    # Slide 2: Table of Contents
     # ----------------------------------------------------
     s2 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s2)
     add_header(s2, "AIEC 國防與企業級 AI 評測全集 — 簡報目錄", "TABLE OF CONTENTS")
 
-    # Left TOC Card (Part 1 to 3)
     add_icon_card(s2, 0.8, 1.6, 7.0, 6.25, "📋", "簡報章節目錄 (一)", "Table of Contents - Part 1 to 3", accent_color=BLUE)
     tb_toc1 = s2.shapes.add_textbox(Inches(1.1), Inches(2.7), Inches(6.4), Inches(5.0))
     toc1_bullets = [
@@ -333,7 +331,6 @@ def build_30_ai_eval_deck():
     ]
     add_formatted_bullets(tb_toc1.text_frame, toc1_bullets, font_size=13.5)
 
-    # Right TOC Card (Part 4 to 5)
     add_icon_card(s2, 8.2, 1.6, 7.0, 6.25, "📑", "簡報章節目錄 (二)", "Table of Contents - Part 4 to 5", accent_color=DARK_BLUE)
     tb_toc2 = s2.shapes.add_textbox(Inches(8.5), Inches(2.7), Inches(6.4), Inches(5.0))
     toc2_bullets = [
@@ -412,7 +409,7 @@ def build_30_ai_eval_deck():
     )
 
     # ----------------------------------------------------
-    # Slide 6: MITRE ATLAS Threat Matrix (MODIFIED: "脈絡" -> "上下文")
+    # Slide 6: MITRE ATLAS Threat Matrix
     # ----------------------------------------------------
     build_2card_slide_fn(
         "MITRE ATLAS 對抗威脅評測矩陣與攻防測評", "SECTION 1: EVALUATION FRAMEWORK & GOVERNANCE",
@@ -511,7 +508,7 @@ def build_30_ai_eval_deck():
     )
 
     # ----------------------------------------------------
-    # Slide 11: System A - Computer Vision (MODIFIED: Removed "Nano Banana Pro:")
+    # Slide 11: System A - Computer Vision
     # ----------------------------------------------------
     build_infographic_slide(
         "A類 - 電腦視覺與目標偵測對抗評測 (CV T&E)", "SECTION 3: SYSTEM-SPECIFIC AI EVALUATION SOP",
@@ -527,7 +524,7 @@ def build_30_ai_eval_deck():
     )
 
     # ----------------------------------------------------
-    # Slide 12: System B - GenAI & LLM (MODIFIED: Added NeMo & "脈絡" -> "上下文")
+    # Slide 12: System B - GenAI & LLM
     # ----------------------------------------------------
     build_2card_slide_fn(
         "B類 - 生成式 AI 與大語言模型越獄評測 (GenAI & LLM)", "SECTION 3: SYSTEM-SPECIFIC AI EVALUATION SOP",
@@ -547,7 +544,7 @@ def build_30_ai_eval_deck():
     )
 
     # ----------------------------------------------------
-    # Slide 13: System C - RAG (MODIFIED: Removed "Nano Banana Pro:" & "脈絡" -> "上下文")
+    # Slide 13: System C - RAG
     # ----------------------------------------------------
     build_infographic_slide(
         "C類 - 檢索增強生成 RAG 三元組評測 (RAG Triad T&E)", "SECTION 3: SYSTEM-SPECIFIC AI EVALUATION SOP",
@@ -563,7 +560,7 @@ def build_30_ai_eval_deck():
     )
 
     # ----------------------------------------------------
-    # Slide 14: System D - AI Agent (MODIFIED: Added T&E, HITL)
+    # Slide 14: System D - AI Agent
     # ----------------------------------------------------
     build_2card_slide_fn(
         "D類 - AI Agent 與多代理軌跡評測 (Multi-Agent T&E)", "SECTION 3: SYSTEM-SPECIFIC AI EVALUATION SOP",
@@ -583,7 +580,7 @@ def build_30_ai_eval_deck():
     )
 
     # ----------------------------------------------------
-    # Slide 15: System E - Autonomous & HMT (MODIFIED: Removed "Nano Banana Pro:", Added NASA-TLX, HITL)
+    # Slide 15: System E - Autonomous & HMT
     # ----------------------------------------------------
     build_infographic_slide(
         "E類 - 自主系統與人機協同 (HMT) 評測", "SECTION 3: SYSTEM-SPECIFIC AI EVALUATION SOP",
@@ -599,7 +596,7 @@ def build_30_ai_eval_deck():
     )
 
     # ----------------------------------------------------
-    # Slide 16: System F - Predictive Analytics (MODIFIED: Added AIF360)
+    # Slide 16: System F - Predictive Analytics
     # ----------------------------------------------------
     build_2card_slide_fn(
         "F類 - 預測分析與決策支援評測 (Predictive Analytics T&E)", "SECTION 3: SYSTEM-SPECIFIC AI EVALUATION SOP",
@@ -619,20 +616,53 @@ def build_30_ai_eval_deck():
     )
 
     # ----------------------------------------------------
-    # Slide 17: 15 Metrics Master Overview (MODIFIED: Removed "Nano Banana Pro:", "脈絡" -> "上下文")
+    # Slide 17: 15 Metrics Master Overview (RESTRUCTURED: 3 Large Cards for High Legibility)
     # ----------------------------------------------------
-    build_infographic_slide(
-        "15 項國防級 AI 量化評測指標總覽", "SECTION 4: 15 QUANTITATIVE EVALUATION METRICS & SOPS",
-        "📊", "15 項 AI 量化評測指標與三大視角", "15 Quantitative Metrics Overview",
-        [
-            "1. **作戰與環境效能 (Q1-Q4)**：對抗韌性、自然穩健性、任務完成率 (MSR)、可中止性",
-            "2. **情境與模型能力 (Q5-Q10)**：信任校準、認知負荷、可解釋性、越獄防禦、幻覺率、RAG精確度",
-            "3. **稽核、資安與治理 (Q11-Q15)**：Agent軌跡、漂移監控、不確定性量化、防降密洩漏、可追溯性",
-            "4. **貫穿四大標準**：NIST AI RMF 1.0, DoD CDAO AI T&E, ISO 42001, MITRE ATLAS"
-        ],
-        "ai_eval_matrix.jpg", "15 項 AI 量化評測指標與三大視角矩陣圖",
-        ["MSR", "garak", "RAGAS", "UQ", "NIST", "RMF", "DoD", "CDAO", "T&E", "ISO", "AIMS", "MITRE", "ATLAS"]
-    )
+    s17 = prs.slides.add_slide(blank_layout)
+    set_pure_white_bg(s17)
+    add_header(s17, "15 項國防級 AI 量化評測指標與合格門檻總覽", "SECTION 4: 15 QUANTITATIVE EVALUATION METRICS & SOPS")
+
+    # Column 1: Operational & Environment (Q1-Q4)
+    add_icon_card(s17, 0.8, 1.6, 4.6, 6.25, "🎯", "一、作戰與環境效能", "Operational Performance (Q1-Q4)", accent_color=BLUE)
+    tb_c1 = s17.shapes.add_textbox(Inches(0.95), Inches(2.7), Inches(4.3), Inches(5.0))
+    c1_bullets = [
+        "1. **Q1. 對抗韌性 (Robustness)**",
+        "  - Acc_adv / Acc_clean >= 90%",
+        "2. **Q2. 自然穩健性 (Natural)**",
+        "  - mAP 衰減率 <= 10%",
+        "3. **Q3. 任務完成率 (MSR)**",
+        "  - MSR >= 95% (100次 LVC 模擬)",
+        "4. **Q4. 可中止性 (Abortability)**",
+        "  - Latency <= 100ms (100% Fail-Safe)"
+    ]
+    add_formatted_bullets(tb_c1.text_frame, c1_bullets, font_size=13.5)
+
+    # Column 2: Scenario & Model Capability (Q5-Q10)
+    add_icon_card(s17, 5.7, 1.6, 4.6, 6.25, "🧠", "二、情境與模型能力", "Model Capabilities (Q5-Q10)", accent_color=DARK_BLUE)
+    tb_c2 = s17.shapes.add_textbox(Inches(5.85), Inches(2.7), Inches(4.3), Inches(5.0))
+    c2_bullets = [
+        "1. **Q5. 信任校準**：ECE <= 0.05",
+        "2. **Q6. 認知負荷**：NASA-TLX 下降 >= 30%",
+        "3. **Q7. 可解釋性**：Point Game >= 0.85",
+        "4. **Q8. 越獄防禦**：garak 防禦率 >= 99%",
+        "5. **Q9. 幻覺控制**：忠實度 >= 0.95",
+        "6. **Q10. RAG 精確度**：Precision >= 0.90"
+    ]
+    add_formatted_bullets(tb_c2.text_frame, c2_bullets, font_size=13)
+
+    # Column 3: Audit, Security & Governance (Q11-Q15)
+    add_icon_card(s17, 10.6, 1.6, 4.6, 6.25, "🛡️", "三、稽核與資安治理", "Audit & Governance (Q11-Q15)", accent_color=BLUE)
+    tb_c3 = s17.shapes.add_textbox(Inches(10.75), Inches(2.7), Inches(4.3), Inches(5.0))
+    c3_bullets = [
+        "1. **Q11. Agent 調用合規**：未授權 API = 0%",
+        "2. **Q12. 概念數據漂移**：告警召回 >= 95%",
+        "3. **Q13. 不確定性量化 (UQ)**：OOD覆蓋 >= 95%",
+        "4. **Q14. 防降密洩漏**：防洩漏率 = 0% (RBAC)",
+        "5. **Q15. 軌跡可追溯**：Log 稽核率 = 100%"
+    ]
+    add_formatted_bullets(tb_c3.text_frame, c3_bullets, font_size=13)
+
+    add_acronym_footer(s17, ["MSR", "garak", "RAGAS", "UQ", "NIST", "RMF", "DoD", "CDAO", "T&E", "ISO", "AIMS", "MITRE", "ATLAS"], y_pos=7.95, height=0.9)
 
     # ----------------------------------------------------
     # Slide 18: Q1 & Q2
@@ -711,7 +741,7 @@ def build_30_ai_eval_deck():
     build_metric_pair_slide_fn("15 項評測指標 (Q7 - Q8) —— 可解釋性與越獄防禦", "SECTION 4: 15 QUANTITATIVE EVALUATION METRICS & SOPS", m7, m8, ["XAITK", "SHAP", "LIME", "LLM", "garak", "OWASP", "ISO"])
 
     # ----------------------------------------------------
-    # Slide 22: Q9 & Q10 (MODIFIED: "脈絡" -> "上下文")
+    # Slide 22: Q9 & Q10
     # ----------------------------------------------------
     m9 = {
         "id": 9, "name_zh": "幻覺率與事實忠實度", "name_en": "Hallucination Rate & Faithfulness",
@@ -794,7 +824,7 @@ def build_30_ai_eval_deck():
     add_acronym_footer(s25, ["API", "RAG", "LLM", "CMMC", "ISO", "AIMS", "SHIELD"], y_pos=7.95, height=0.9)
 
     # ----------------------------------------------------
-    # Slide 26: Sovereign AI Platform (MODIFIED: Removed "Nano Banana Pro:")
+    # Slide 26: Sovereign AI Platform
     # ----------------------------------------------------
     build_infographic_slide(
         "評測專用四層主權 LLM 測試架構 (Tier 1~Tier 4)", "SECTION 5: EVALUATION PLATFORMS & AUTOMATED T&E",
@@ -871,7 +901,7 @@ def build_30_ai_eval_deck():
     )
 
     # ----------------------------------------------------
-    # Slide 30: Conclusion (MODIFIED: Added MAITE to acronyms)
+    # Slide 30: Conclusion
     # ----------------------------------------------------
     build_2card_slide_fn(
         "結語與未來展望 — MAITE 自動化評測測試工廠", "SECTION 5: EVALUATION PLATFORMS & AUTOMATED T&E",
@@ -893,7 +923,7 @@ def build_30_ai_eval_deck():
     out_dir = r'c:\Users\administartor\Downloads\AIEC'
     out_path = os.path.join(out_dir, 'AIEC_AI_Evaluation_30_Slides_NanoBanana.pptx')
     prs.save(out_path)
-    print(f'Successfully updated 30-slide presentation at: {out_path}')
+    print(f'Successfully updated Slide 17 with 3-column large text layout in presentation: {out_path}')
 
 if __name__ == '__main__':
     build_30_ai_eval_deck()
