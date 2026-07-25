@@ -53,6 +53,6 @@ MITRE ATLAS 是由 MITRE 主導，聯合微軟、 government agencies 共同開�
 
 ## 🔗 關聯筆記
 - [[AIEC 筆記主索引 (MOC)]]
+- [[NCSIST AIEC 國防 AI 評測與認證總體架構]]
 - [[A類 - 電腦視覺與目標偵測]]
 - [[B類 - 生成式 AI 與大語言模型]]
-- [[國防 AIEC 核心任務與交戰規則 (RoE)]]

@@ -32,5 +32,6 @@ status: Complete
 
 ## 🔗 關聯筆記
 - [[AIEC 筆記主索引 (MOC)]]
+- [[NCSIST AIEC 國防 AI 評測與認證總體架構]]
 - [[國防 AIEC 核心任務與交戰規則 (RoE)]]
 - [[地端 LLM 推論引擎與 Middleware 工具鏈]]

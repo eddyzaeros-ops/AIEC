@@ -8,8 +8,9 @@ tags:
   - DefenseAI
   - ISO42001
   - MITRE_ATLAS
+  - NCSIST
 author: AIEC Defense Expert Team
-version: 2.0
+version: 3.0
 last_updated: 2026-07-26
 status: Complete
 ---
@@ -17,13 +18,14 @@ status: Complete
 # 🛡️ AIEC 國防 AI 評測與認證體系筆記主索引 (Map of Content)
 
 > [!NOTE]
-> 本 MOC 匯集十年國防 AI 評測經驗與《國防領域 AI 應用需要哪些安全、保密與審計機制？ISO42001 及 AIEC 扮演的角色》研析精華，為獨立評測機構 (AIEC) 提供涵蓋**安全 (Security)、保密 (Confidentiality)、審計 (Auditing) 與治理 (Governance)** 的完整雙腦知識圖譜。
+> 本 MOC 匯集十年國防 AI 評測經驗、NCSIST AIEC 總體架構圖 (`AIEC_1.pptx`) 與《國防領域 AI 應用需要哪些安全、保密與審計機制？ISO42001 及 AIEC 扮演的角色》研析精華，為國家中山科學研究院 (NCSIST) 與獨立評測機構 (AIEC) 提供涵蓋**安全 (Security)、保密 (Confidentiality)、審計 (Auditing) 與治理 (Governance)** 的完整雙腦知識圖譜。
 
 ---
 
 ## 🗂️ 筆記五大主題分區
 
 ### 01. 治理、資安與標準 (Governance, Security & Standards)
+- [[NCSIST AIEC 國防 AI 評測與認證總體架構]] - **[主圖解析]** 剖析 NCSIST AIEC 總藍圖、代碼注入/數據污染防禦與 5 大底層戰術柱石
 - [[AIEC 規範與治理雙支柱]] - DAGR 指導原則與 SHIELD 治理循環
 - [[SHIELD 治理循環活動]] - Set, Hone, Improve, Evaluate, Log, Detect 全生命週期
 - [[ISO 42001 人工智慧管理系統]] - AIMS 國際管理框架與 AI 影響評估 (AIIA)
@@ -51,7 +53,8 @@ status: Complete
 - [[地端 LLM 推論引擎與 Middleware 工具鏈]] - Ollama, vLLM, llama.cpp, GGUF, Gemma 4 LoRA
 - [[Lattice 戰術 C2 架構與 Menace 邊緣算力節點]] - JADC2 網狀通訊與零信任 API 閘道
 - [[戰術邊緣硬體安全與模型自毀機制]] - 無 GPS Mesh、防篡改 (Tamper-Resistance) 與緊急自毀
-- [[聯邦學習 (Federated Learning) 國防保密策略]] - 「模型移動，資料不動」與梯度權重安全傳輸
+- [[聯邦學習 (Federated Learning) 國防保密策略]] - **[主圖元素]**「模型移動，資料不動」與參數融合在地
+- [[地端模型蒸餾、資料與模型溯源 SOP]] - **[主圖元素]** Edge 端模型蒸餾、清洗規則、Data & Model Provenance 追溯與 Confidence Score
 
 ---
 

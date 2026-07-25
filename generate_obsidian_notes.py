@@ -41,8 +41,9 @@ tags:
   - DefenseAI
   - ISO42001
   - MITRE_ATLAS
+  - NCSIST
 author: AIEC Defense Expert Team
-version: 2.0
+version: 3.0
 last_updated: 2026-07-26
 status: Complete
 ---
@@ -50,13 +51,14 @@ status: Complete
 # 🛡️ AIEC 國防 AI 評測與認證體系筆記主索引 (Map of Content)
 
 > [!NOTE]
-> 本 MOC 匯集十年國防 AI 評測經驗與《國防領域 AI 應用需要哪些安全、保密與審計機制？ISO42001 及 AIEC 扮演的角色》研析精華，為獨立評測機構 (AIEC) 提供涵蓋**安全 (Security)、保密 (Confidentiality)、審計 (Auditing) 與治理 (Governance)** 的完整雙腦知識圖譜。
+> 本 MOC 匯集十年國防 AI 評測經驗、NCSIST AIEC 總體架構圖 (`AIEC_1.pptx`) 與《國防領域 AI 應用需要哪些安全、保密與審計機制？ISO42001 及 AIEC 扮演的角色》研析精華，為國家中山科學研究院 (NCSIST) 與獨立評測機構 (AIEC) 提供涵蓋**安全 (Security)、保密 (Confidentiality)、審計 (Auditing) 與治理 (Governance)** 的完整雙腦知識圖譜。
 
 ---
 
 ## 🗂️ 筆記五大主題分區
 
 ### 01. 治理、資安與標準 (Governance, Security & Standards)
+- [[NCSIST AIEC 國防 AI 評測與認證總體架構]] - **[主圖解析]** 剖析 NCSIST AIEC 總藍圖、代碼注入/數據污染防禦與 5 大底層戰術柱石
 - [[AIEC 規範與治理雙支柱]] - DAGR 指導原則與 SHIELD 治理循環
 - [[SHIELD 治理循環活動]] - Set, Hone, Improve, Evaluate, Log, Detect 全生命週期
 - [[ISO 42001 人工智慧管理系統]] - AIMS 國際管理框架與 AI 影響評估 (AIIA)
@@ -84,7 +86,8 @@ status: Complete
 - [[地端 LLM 推論引擎與 Middleware 工具鏈]] - Ollama, vLLM, llama.cpp, GGUF, Gemma 4 LoRA
 - [[Lattice 戰術 C2 架構與 Menace 邊緣算力節點]] - JADC2 網狀通訊與零信任 API 閘道
 - [[戰術邊緣硬體安全與模型自毀機制]] - 無 GPS Mesh、防篡改 (Tamper-Resistance) 與緊急自毀
-- [[聯邦學習 (Federated Learning) 國防保密策略]] - 「模型移動，資料不動」與梯度權重安全傳輸
+- [[聯邦學習 (Federated Learning) 國防保密策略]] - **[主圖元素]**「模型移動，資料不動」與參數融合在地
+- [[地端模型蒸餾、資料與模型溯源 SOP]] - **[主圖元素]** Edge 端模型蒸餾、清洗規則、Data & Model Provenance 追溯與 Confidence Score
 
 ---
 
@@ -182,8 +185,76 @@ status: Draft
 """)
 
     # ---------------------------------------------------------
-    # 01-治理與標準 (6 Notes)
+    # 01-治理與標準 (7 Notes)
     # ---------------------------------------------------------
+    write_note('01-治理與標準', 'NCSIST AIEC 國防 AI 評測與認證總體架構.md', """---
+title: NCSIST AIEC 國防 AI 評測與認證總體架構
+type: Core Blueprint Note
+domain: NCSIST Defense Architecture
+tags:
+  - AIEC
+  - NCSIST
+  - Architecture
+  - ISO42001
+  - ActiveDefense
+author: AIEC Defense Expert Team
+version: 1.0
+last_updated: 2026-07-26
+status: Complete
+---
+
+# 🏛️ NCSIST AIEC 國防 AI 評測與認證總體架構藍圖
+
+> [!IMPORTANT]
+> 本筆記專門研析 **NCSIST (國家中山科學研究院)** AIEC 總體架構圖 (`AIEC_1.pptx`)，解構國家級國防 AI 評測體系運作模式。
+
+```
+                  ┌──────────────────────────────────────────────┐
+                  │    NCSIST 國防 AI 評測與認證總體架構 (AIEC)  │
+                  └──────────────────────┬───────────────────────┘
+                                         │
+ ┌───────────────────────┬───────────────┴───────────────┬───────────────────────┐
+ ▼                       ▼                               ▼                       ▼
+┌──────────────────┐  ┌──────────────────────────┐  ┌──────────────────┐  ┌──────────────────┐
+│  一、威脅與防禦  │  │  二、底層五大戰術 SOP 柱石  │  │  三、地端與邊緣  │  │  四、規範與標準  │
+├──────────────────┤  ├──────────────────────────┤  ├──────────────────┤  ├──────────────────┤
+│ • 代碼注入 (Code)│  │ 1. 擬定 ROE 交戰規則      │  │ • 地端模型蒸餾   │  │ • ISO 42001 (AIMS│
+│ • 數據污染 (Poison│  │ 2. 審核驗證分層式 AI 架構│  │ • 參數融合/在地  │  │   管理系統標準)  │
+│ • 主動防禦機制   │  │ 3. 策劃執行紅隊對抗/演訓 │  │ • Edge / 邊緣運算│  │ • AIEC 評測中心  │
+│ • Cyber Range    │  │ 4. 研發/軍事資料集分級   │  │ • Confidence Score│  │   專屬審查規範   │
+│                  │  │ 5. 供應鏈安全與合規檢查  │  │   (信心分數校準) │  │                  │
+└──────────────────┘  └──────────────────────────┘  └──────────────────┘  └──────────────────┘
+```
+
+## 📌 一、 威脅層與主動防禦 (Threats & Active Defense)
+1. **對抗威脅防範**：針對**代碼注入 (Code Injection)** 與 **數據污染 (Data Poisoning)** 實施主動防禦。
+2. **主動防禦機制 (Active Defense)**：結合 Cyber Range 與 [[MITRE ATLAS 人工智慧對抗威脅矩陣]]，建立即時對抗緩解與過濾閘門。
+
+## 🛡️ 二、 底層五大戰術 SOP 柱石 (5 Operational Pillar SOPs)
+1. **擬定 ROE 交戰規則 (人機協同與可控性)**：明確劃分 HITL / HOTL / HOOTL 授權邊界，參閱 [[國防 AIEC 核心任務與交戰規則 (RoE)]]。
+2. **審核/驗證分層式 AI 架構 (能在作戰條件下完成任務)**：確效 Edge-Fog-Cloud 三層運算於極端環境下之作戰能力，參閱 [[T&E 四大能力層次]]。
+3. **策劃/執行紅隊對抗/演訓 (能承受攻擊與受損)**：於 VBS 4 / EADSIM LVC 兵棋推演中進行紅軍對抗演練，驗證彈性恢復能力。
+4. **研發/軍事資料集分級/稽核**：落實資料清洗規則、版本控制、Data Provenance 與 Model Provenance 溯源機制，參閱 [[地端模型蒸餾、資料與模型溯源 SOP]]。
+5. **供應鏈安全與模型合規檢查**：執行第三方 SDK 與開源模型後門檢測、邏輯檢查與 CMMC 合規審查。
+
+## ⚙️ 三、 地端推論、蒸餾與保密 (On-Prem, Distillation & Confidentiality)
+- **地端模型蒸餾/微調**：採 Edge 端輕量化模型蒸餾與 LoRA 微調。
+- **參數融合、資料在地**：貫徹 [[聯邦學習 (Federated Learning) 國防保密策略]]，「模型移動，資料不動」。
+- **可解釋邏輯路徑與信心分數 (Confidence Score)**：提供 XAI 特徵歸因熱力圖與信心度校準，參閱 [[5. 信任校準與過度依賴]]。
+
+## 🌐 四、 組織與標準體系 (Governance Infrastructure)
+- **NCSIST (國家中山科學研究院)**：主導國家級國防 AI 評測與主權算力建置。
+- **ISO 42001 (AI 管理系統標準)**：國際通用底層框架與方法論，參閱 [[ISO 42001 人工智慧管理系統]]。
+- **AIEC (AI 評測中心規範)**：實體審查閘門與戰術化放行機制。
+
+## 🔗 關聯筆記
+- [[AIEC 筆記主索引 (MOC)]]
+- [[國防 AIEC 核心任務與交戰規則 (RoE)]]
+- [[ISO 42001 人工智慧管理系統]]
+- [[地端模型蒸餾、資料與模型溯源 SOP]]
+- [[聯邦學習 (Federated Learning) 國防保密策略]]
+""")
+
     write_note('01-治理與標準', 'AIEC 規範與治理雙支柱.md', """---
 title: AIEC 規範與治理雙支柱
 type: Governance Note
@@ -298,9 +369,9 @@ ISO 42001 (國際標準：提供通用框架與 SOP) ──> AIEC (國防實體�
 
 ## 🔗 關聯筆記
 - [[AIEC 筆記主索引 (MOC)]]
+- [[NCSIST AIEC 國防 AI 評測與認證總體架構]]
 - [[AIEC 規範與治理雙支柱]]
 - [[國防 AIEC 核心任務與交戰規則 (RoE)]]
-- [[RAG 權限控管與資料分級降密]]
 """)
 
     write_note('01-治理與標準', 'MITRE ATLAS 人工智慧對抗威脅矩陣.md', """---
@@ -358,9 +429,9 @@ MITRE ATLAS 是由 MITRE 主導，聯合微軟、 government agencies 共同開�
 
 ## 🔗 關聯筆記
 - [[AIEC 筆記主索引 (MOC)]]
+- [[NCSIST AIEC 國防 AI 評測與認證總體架構]]
 - [[A類 - 電腦視覺與目標偵測]]
 - [[B類 - 生成式 AI 與大語言模型]]
-- [[國防 AIEC 核心任務與交戰規則 (RoE)]]
 """)
 
     write_note('01-治理與標準', 'RAG 權限控管與資料分級降密.md', """---
@@ -454,12 +525,12 @@ status: Complete
 ### 5. 供應鏈安全與模型授權審查
 - 審查開源模型 (如 Gemma 4, Llama 3) 與第三方 SDK，確保無後門 (Backdoor) 且符合資料本地化要求。
 
-## 🔗 关聯筆記
+## 🔗 關聯筆記
 - [[AIEC 筆記主索引 (MOC)]]
+- [[NCSIST AIEC 國防 AI 評測與認證總體架構]]
 - [[AIEC 規範與治理雙支柱]]
 - [[ISO 42001 人工智慧管理系統]]
 - [[E類 - 自主系統與人機協同]]
-- [[主權 AI 平台與四層 LLM 堆疊]]
 """)
 
     # ---------------------------------------------------------
@@ -862,7 +933,7 @@ status: Complete
 """)
 
     # ---------------------------------------------------------
-    # 04-地端架構與工具 (5 Notes)
+    # 04-地端架構與工具 (6 Notes)
     # ---------------------------------------------------------
     write_note('04-地端架構與工具', '主權 AI 平台與四層 LLM 堆疊.md', """---
 title: 主權 AI 平台與四層 LLM 堆疊
@@ -898,6 +969,7 @@ status: Complete
 
 ## 🔗 關聯筆記
 - [[AIEC 筆記主索引 (MOC)]]
+- [[NCSIST AIEC 國防 AI 評測與認證總體架構]]
 - [[國防 AIEC 核心任務與交戰規則 (RoE)]]
 - [[地端 LLM 推論引擎與 Middleware 工具鏈]]
 """)
@@ -1038,7 +1110,7 @@ status: Complete
 # 🤝 聯邦學習 (Federated Learning) 國防保密策略
 
 ## 📌 核心原則：「模型移動，資料不動」
-在多防空陣地、跨艦隊或跨機密網段聯合訓練 AI 時，若將原始作戰數據集中傳送至中央伺服器，將面臨極大資安外洩風險。聯邦學習貫徹**「模型移動，資料不動 (Model moves, data stays)」**原則。
+在多防空陣地、跨艦隊或跨機密網段聯合訓練 AI 時，若將原始作戰數據集中傳送至中央伺服器，將面臨極大資安外洩風險。聯邦學習貫徹**「模型移動，資料不動 (Model moves, data stays)」**與**參數融合在地**原則。
 
 ```
 [防空陣地 A] ──(僅回傳梯度/權重)──┐
@@ -1055,11 +1127,59 @@ status: Complete
 
 ## 🔗 關聯筆記
 - [[AIEC 筆記主索引 (MOC)]]
+- [[NCSIST AIEC 國防 AI 評測與認證總體架構]]
 - [[國防 AI 安全保密與審計三維矩陣]]
 - [[主權 AI 平台與四層 LLM 堆疊]]
 """)
 
-    print("All 25 Notes & Templates generated successfully!")
+    write_note('04-地端架構與工具', '地端模型蒸餾、資料與模型溯源 SOP.md', """---
+title: 地端模型蒸餾、資料與模型溯源 SOP
+type: Operational SOP Note
+domain: Model Distillation & Data Provenance
+tags:
+  - Distillation
+  - DataProvenance
+  - ModelProvenance
+  - ConfidenceScore
+author: AIEC Defense Expert Team
+version: 1.0
+last_updated: 2026-07-26
+status: Complete
+---
+
+# 🧪 地端模型蒸餾、資料與模型溯源 SOP
+
+> [!IMPORTANT]
+> 本 SOP 專門呼應 NCSIST AIEC 架構圖 (`AIEC_1.pptx`) 中**「地端模型蒸餾/微調」、「Data & Model Provenance 溯源」與「信心分數 (Confidence Score) 校準」**模組。
+
+```
+[教師模型 Teacher Model (70B)] ──(Knowledge Distillation 知識蒸餾)──> [邊緣學生模型 Edge Student (7B/3B)]
+                                                                               │
+                                                                               ▼
+[資料/模型溯源 Data & Model Provenance] <──(邏輯檢查 / 清洗規則 / 版本號)──── [信心分數 Confidence Score 校準]
+```
+
+## 📌 核心作業程序與控制點
+
+### 1. Edge 端模型蒸餾與輕量化 (Edge Distillation)
+- 將地端 70B 主權大模型之知識蒸餾 (Knowledge Distillation) 至 7B/3B 輕量化邊緣模型，兼顧作戰時延與精度。
+
+### 2. 資料與模型溯源 (Data & Model Provenance)
+- **Data Provenance (資料溯源)**：記錄每一筆訓練樣本之採集來源、邏輯檢查規則、清洗演算法版本號 (`v1.4.2`) 與標籤品質。
+- **Model Provenance (模型溯源)**：追溯模型訓練超參數、權重 Checkpoint 雜湊值與微調歷程。一旦模型發生戰術誤判，能於 10 分鐘內回溯並隔離污染數據。
+
+### 3. 信心分數 (Confidence Score) 與可解釋路徑
+- 所有輸出必須伴隨校準後之信心指數 (Confidence Score, score)，評估 ECE 期望校準誤差 ($\mathrm{ECE} \le 0.05$)，防止盲目過度信任。
+
+## 🔗 關聯筆記
+- [[AIEC 筆記主索引 (MOC)]]
+- [[NCSIST AIEC 國防 AI 評測與認證總體架構]]
+- [[SHIELD 治理循環活動]]
+- [[5. 信任校準與過度依賴]]
+- [[15. 系統軌跡可追溯性與可稽核性]]
+""")
+
+    print("All 28 Notes & Templates generated successfully!")
 
 if __name__ == '__main__':
     build_all_notes()
