@@ -14,7 +14,7 @@ from pptx.enum.shapes import MSO_SHAPE
 
 from pptx_helpers import set_pure_white_bg, add_header, add_icon_card, add_formatted_bullets, add_formatted_text
 
-# Updated Master Acronym Database
+# Updated Master Acronym Database with ECE, garak, mAP, Acc_adv, Acc_clean
 ACRONYM_DB = {
     "AIEC": ("人工智慧評測與認證體系", "Artificial Intelligence Evaluation & Certification"),
     "AI": ("人工智慧", "Artificial Intelligence"),
@@ -45,6 +45,10 @@ ACRONYM_DB = {
     "TEVV": ("測試、評估、驗證與確認", "Test, Evaluation, Verification, and Validation"),
     "JATIC": ("聯合人工智慧測試中心", "Joint AI Test Center"),
     "mAP": ("平均精確度均值", "mean Average Precision"),
+    "Acc_adv": ("對抗測試樣本準確率", "Adversarial Sample Accuracy"),
+    "Acc_clean": ("乾淨測試樣本準確率", "Clean Sample Accuracy"),
+    "ECE": ("期望校準誤差", "Expected Calibration Error"),
+    "garak": ("生成式 AI 紅隊分析工具包", "Generative AI Redteam Analysis Kit"),
     "OOD": ("分布外數據", "Out-of-Distribution"),
     "NRTK": ("自然穩健性測試工具包", "Natural Robustness Toolkit"),
     "XAITK": ("可解釋人工智慧工具包", "Explainable AI Toolkit"),
@@ -60,12 +64,10 @@ ACRONYM_DB = {
     "ToAST": ("自主系統測試工具", "Testing of Autonomous Systems Tool"),
     "IDA": ("國防分析研究所", "Institute for Defense Analyses"),
     "MIT-LL": ("麻省理工學院林肯實驗室", "Massachusetts Institute of Technology Lincoln Laboratory"),
-    "ECE": ("期望校準誤差", "Expected Calibration Error"),
     "EEG": ("腦電圖儀", "Electroencephalography"),
     "NASA-TLX": ("美國航太總署任務負荷指數", "NASA Task Load Index"),
     "SHAP": ("沙普利附加解釋值", "SHapley Additive exPlanations"),
     "LIME": ("局部可解釋模型無關說明", "Local Interpretable Model-agnostic Explanations"),
-    "garak": ("生成式 AI 紅隊分析工具包", "Generative AI Redteam Analysis Kit"),
     "OWASP": ("開放 Web 應用程式安全計畫", "Open Web Application Security Project"),
     "RAGAS": ("檢索增強生成評估指標", "Retrieval Augmented Generation Assessment"),
     "API": ("應用程式介面", "Application Programming Interface"),
@@ -107,7 +109,7 @@ def add_acronym_footer(slide, acronym_keys, y_pos=7.95, height=0.9):
     tf.word_wrap = True
 
     p_head = tf.paragraphs[0]
-    p_head.text = "📌 頁面英文縮寫對照 (Acronym Footnotes):"
+    p_head.text = "📌 頁面英文縮寫與專有名詞對照 (Acronym & Term Footnotes):"
     p_head.font.size = Pt(10)
     p_head.font.bold = True
     p_head.font.color.rgb = BLUE
@@ -616,7 +618,7 @@ def build_30_ai_eval_deck():
     )
 
     # ----------------------------------------------------
-    # Slide 17: 15 Metrics Master Overview (RESTRUCTURED: 3 Large Cards for High Legibility)
+    # Slide 17: 15 Metrics Master Overview (MODIFIED: Added ECE, garak, mAP, Acc_adv, Acc_clean to Footnotes)
     # ----------------------------------------------------
     s17 = prs.slides.add_slide(blank_layout)
     set_pure_white_bg(s17)
@@ -662,7 +664,8 @@ def build_30_ai_eval_deck():
     ]
     add_formatted_bullets(tb_c3.text_frame, c3_bullets, font_size=13)
 
-    add_acronym_footer(s17, ["MSR", "garak", "RAGAS", "UQ", "NIST", "RMF", "DoD", "CDAO", "T&E", "ISO", "AIMS", "MITRE", "ATLAS"], y_pos=7.95, height=0.9)
+    # MODIFIED: Added ECE, garak, mAP, Acc_adv, Acc_clean explicitly to Slide 17 Footnotes
+    add_acronym_footer(s17, ["Acc_adv", "Acc_clean", "mAP", "MSR", "ECE", "garak", "RAGAS", "UQ", "NIST", "RMF", "DoD", "CDAO", "T&E", "ISO", "AIMS", "MITRE", "ATLAS"], y_pos=7.95, height=0.9)
 
     # ----------------------------------------------------
     # Slide 18: Q1 & Q2
@@ -681,7 +684,7 @@ def build_30_ai_eval_deck():
         "thresh": "mAP 衰減率 <= 10% (高噪聲測試條件下)",
         "std": "JATIC / DoD CDAO AI T&E"
     }
-    build_metric_pair_slide_fn("15 項評測指標 (Q1 - Q2) —— 對抗與自然穩健性", "SECTION 4: 15 QUANTITATIVE EVALUATION METRICS & SOPS", m1, m2, ["FGSM", "PGD", "mAP", "ART", "HEART", "NRTK", "MITRE", "ATLAS", "NIST", "RMF", "JATIC", "DoD", "CDAO", "T&E"])
+    build_metric_pair_slide_fn("15 項評測指標 (Q1 - Q2) —— 對抗與自然穩健性", "SECTION 4: 15 QUANTITATIVE EVALUATION METRICS & SOPS", m1, m2, ["Acc_adv", "Acc_clean", "FGSM", "PGD", "mAP", "ART", "HEART", "NRTK", "MITRE", "ATLAS", "NIST", "RMF", "JATIC", "DoD", "CDAO", "T&E"])
 
     # ----------------------------------------------------
     # Slide 19: Q3 & Q4
@@ -923,7 +926,7 @@ def build_30_ai_eval_deck():
     out_dir = r'c:\Users\administartor\Downloads\AIEC'
     out_path = os.path.join(out_dir, 'AIEC_AI_Evaluation_30_Slides_NanoBanana.pptx')
     prs.save(out_path)
-    print(f'Successfully updated Slide 17 with 3-column large text layout in presentation: {out_path}')
+    print(f'Successfully updated Slide 17 footnotes with ECE, garak, mAP, Acc_adv, Acc_clean in presentation: {out_path}')
 
 if __name__ == '__main__':
     build_30_ai_eval_deck()
