@@ -51,6 +51,9 @@ Obsidian 筆記庫實體路徑：`G:\我的雲端硬碟\secondbrain\AIEC\`
 ### 規則四：LaTeX 數學公式標準渲染
 - 凡涉及量化指標計算公式（如 Q1~Q15），一律採用標準 LaTeX 格式 (`$...$` 內聯或 `$$...$$` 區塊)，確保 Obsidian 內建 MathJax 技術能夠 100% 正確編譯與視覺呈現。
 
+### 規則六：資訊圖表生成規範 (Infographic Generation)
+- **資訊圖表繪製引擎**：若要生成「資訊圖表」(Infographics / Visual Diagrams)，統一使用 **Nano Banana pro** 進行繪圖與視覺視覺呈現。
+
 ### 規則五：語言偏好
 - 所有對話、思考、筆記內容、說明與維護日誌，必須一律使用**繁體中文 (Traditional Chinese)** 呈現。
 
