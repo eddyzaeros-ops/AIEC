@@ -1,0 +1,39 @@
+Slide 2 shapes count: 13
+=== Shape 1 (Rectangle 1) ===
+
+=== Shape 2 (Rectangle 2) ===
+
+=== Shape 3 (TextBox 3) ===
+TABLE OF CONTENTS
+=== Shape 4 (TextBox 4) ===
+AIEC 國防與企業級 AI 評測全集 — 簡報目錄
+=== Shape 5 (Rounded Rectangle 5) ===
+
+=== Shape 6 (Rounded Rectangle 6) ===
+📋
+=== Shape 7 (TextBox 7) ===
+簡報章節目錄 (一)
+Table of Contents - Part 1 to 3
+=== Shape 8 (TextBox 8) ===
+▪ 1. 第一區塊：AI 評測體系與治理框架 (P.1 - 6)
+  – P.1 封面 | P.2 目錄 | P.3 雙支柱 | P.4 SHIELD 6階段 | P.5 ISO 42001 | P.6 MITRE ATLAS
+▪ 2. 第二區塊：評測矩陣、能力層次與方法論 (P.7 - 10)
+  – P.7 T&E 四能力層次 | P.8 JATIC 7構面 | P.9 評測6大方法論 | P.10 RAG權限降密
+▪ 3. 第三區塊：六大應用系統 AI 專屬評測 SOP (P.11 - 16)
+  – P.11 CV目標偵測 | P.12 LLM越獄 | P.13 RAG三元組 | P.14 Agent軌跡 | P.15 HMT人機 | P.16 預測分析
+=== Shape 9 (Rounded Rectangle 9) ===
+
+=== Shape 10 (Rounded Rectangle 10) ===
+📑
+=== Shape 11 (TextBox 11) ===
+簡報章節目錄 (二)
+Table of Contents - Part 4 to 5
+=== Shape 12 (TextBox 12) ===
+▪ 4. 第四區塊：15 項國防級 AI 量化評測指標與 SOP (P.17 - 25)
+  – P.17 15項指標總覽 | P.18 Q1-Q2 對抗與自然穩健 | P.19 Q3-Q4 任務與失效 | P.20 Q5-Q6 信任與認知
+  – P.21 Q7-Q8 可解釋與越獄 | P.22 Q9-Q10 幻覺與精確 | P.23 Q11-Q12 Agent與漂移 | P.24 Q13-Q14 UQ與降密 | P.25 Q15 可追溯
+▪ 5. 第五區塊：評測平台與自動化 T&E 流水線 (P.26 - 30)
+  – P.26 主權LLM測試架構 | P.27 地端推論評測 | P.28 C2與邊緣評測 | P.29 AI CLI與Cron | P.30 MAITE未來展望
+=== Shape 13 (Rounded Rectangle 13) ===
+📌 頁面英文縮寫與專有名詞對照 (Acronym & Term Footnotes):
+AIEC: 人工智慧評測與認證體系 (Artificial Intelligence Evaluation & Certification)  |  T&E: 測試與評估 (Test and Evaluation)  |  MOC: 內容主索引地圖 (Map of Content)  |  ISO: 國際標準化組織 (International Organization for Standardization)  |  AIMS: 人工智慧管理系統 (Artificial Intelligence Management System)  |  MAITE: 模型與 AI 測試評估基礎設施框架 (Model & AI Test and Evaluation Infrastructure Framework)

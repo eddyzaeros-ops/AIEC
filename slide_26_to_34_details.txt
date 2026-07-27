@@ -1,0 +1,88 @@
+=== Slide 26 ===
+[TextBox 3]: SECTION 5: EVALUATION PLATFORMS & AUTOMATED T&E
+[TextBox 4]: 評測專用四層主權 LLM 測試架構 (Tier 1~Tier 4)
+[Rounded Rectangle 6]: 🏰
+[TextBox 7]: 4 層 LLM 評測軟硬體架構 | 4-Tier Sovereign LLM Test Stack
+[TextBox 8]: ▪ 1. Tier 1 核心評測：Gemma 4 31B Dense (NVIDIA H200) — 地端白箱對抗測試 | ▪ 2. Tier 2 混合評測：Gemma 4 26B MoE (AMD MI325X) — 地端白箱對抗測試 | ▪ 3. Tier 3 邊緣評測：Gemma 4 E4B 本地推論 — 邊緣節點白箱基準測試 | ▪ 4. Tier 4 雲端評測：Gated Cloud Claude API — 雲端黑箱基準測試 + 護欄閘門
+[TextBox 10]: 🎨 4-Tier 主權 LLM 白箱 vs 黑箱評測架構圖
+[Rounded Rectangle 12]: 📌 頁面英文縮寫與專有名詞對照 (Acronym & Term Footnotes): | AI: 人工智慧 (Artificial Intelligence)  |  LLM: 大語言模型 (Large Language Model)  |  MoE: 專家混合架構 (Mixture of Experts)  |  API: 應用程式介面 (Application Programming Interface)  |  HITL: 人在迴路/人在紐中 (Human-in-the-Loop)  |  OPA: 開放策略代理 (Open Policy Agent)
+=== Slide 27 ===
+[TextBox 3]: SECTION 5: EVALUATION PLATFORMS & AUTOMATED T&E
+[TextBox 4]: 地端 LLM 推論評測引擎與 Middleware 工具鏈
+[Rounded Rectangle 6]: 🛠️
+[TextBox 7]: 1. 地端推論評測工具鏈對比 | Inference Evaluation Engine Comparison
+[TextBox 8]: ▪ 1. Ollama：極簡指令集與 Docker 支援，適合 Modelfile 自訂與評測 | ▪ 2. LM Studio：桌面 GUI，一鍵搜尋下載 Hugging Face GGUF 模型評測 | ▪ 3. llama.cpp：地端 LLM 推論底層 C++ 核心引擎，具備最高效能評測控制 | ▪ 4. vLLM：企業生產環境 High-Throughput 推論評測框架 (PagedAttention)
+[Rounded Rectangle 10]: 📚
+[TextBox 11]: 2. Hugging Face 與 GGUF 評測量化 | Model Hub & Quantization T&E
+[TextBox 12]: ▪ 1. Hugging Face Model Hub：全球 AI 社群模型圖書館與評測基準來源 | ▪ 2. GGUF 量化評測：測試地端晶片 (Mac M系列 / NVIDIA) 推論速度與精度 | ▪ 3. Modelfile 評測封裝：定義 Temperature, System Prompt 參數評測
+[Rounded Rectangle 13]: 📌 頁面英文縮寫與專有名詞對照 (Acronym & Term Footnotes): | LLM: 大語言模型 (Large Language Model)  |  API: 應用程式介面 (Application Programming Interface)  |  GUI: 圖形使用者介面 (Graphical User Interface)  |  GGUF: 通用模型量化格式 (Georgi Gerganov Unified Format)
+=== Slide 28 ===
+[TextBox 3]: SECTION 5: EVALUATION PLATFORMS & AUTOMATED T&E
+[TextBox 4]: 戰術 C2 (Lattice) 與邊緣算力節點 (Menace) 評測
+[Rounded Rectangle 6]: ⚡
+[TextBox 7]: 1. Lattice C2 實戰化 AI 評測 | Software-Defined C2 AI Evaluation
+[TextBox 8]: ▪ 1. 任務工作流評測：涵蓋 ISR, Strike Broker, High-Value Targeting 之 AI 測試 | ▪ 2. 資料模型與 API 評測：外部 Data Model API 與 Pub/Sub API 穩定度測試 | ▪ 3. 知識圖譜評測：測試 Entity Management 與 Sensor Fusion 之準確度
+[Rounded Rectangle 10]: 💻
+[TextBox 11]: 2. Menace 邊緣算力節點評測 | Menace Tactical Edge Node T&E
+[TextBox 12]: ▪ 1. 戰術加固評測：測試極端氣候、強震與全地形軍規環境下之 AI 穩定度 | ▪ 2. 分散式韌性評測：測試 Mesh 無線網絡下 AI 無單點故障能力 | ▪ 3. 雲-邊-端協同評測：運行 Tier-3 輕量化模型 (Gemma 4 E4B) 邊緣目標測試
+[Rounded Rectangle 13]: 📌 頁面英文縮寫與專有名詞對照 (Acronym & Term Footnotes): | C2: 指揮管制 (Command and Control)  |  ISR: 情報、監視與偵察 (Intelligence, Surveillance, and Reconnaissance)  |  API: 應用程式介面 (Application Programming Interface)
+=== Slide 29 ===
+[TextBox 3]: SECTION 5: EVALUATION PLATFORMS & AUTOMATED T&E
+[TextBox 4]: Anti-Gravity AI CLI 自然語言評測檢索與 Cron 排程
+[Rounded Rectangle 6]: 💬
+[TextBox 7]: 1. 自然語言評測檢索工作流 | Natural Language AI T&E CLI Workflow
+[TextBox 8]: ▪ 1. 對話即評測檢索：「幫我搜尋 AIEC 筆記中有關 RAG 評測與越獄防禦的規定」 | ▪ 2. mcpvault API：背景自動調用 `search_notes` 與 `write_note` 存取評測 Vault | ▪ 3. 隨手紀錄評測結果：「將剛才討論的 15 項量化評測指標精隨寫入每日筆記」
+[Rounded Rectangle 10]: ⏰
+[TextBox 11]: 2. 每週自動評測重整 Cron | Weekly Evaluation Review Schedule
+[TextBox 12]: ▪ 1. 排程時間：每週日 09:17 (Cron：`17 9 * * 0`) 背景自動執行 | ▪ 2. 4 大步驟：盤點評測變動 -> 提煉 Clippings -> 評測健康檢查 -> 更新 MOC | ▪ 3. 評測雙腦成長：自動偵測評測筆記缺口，產出 AI 評測週報
+[Rounded Rectangle 13]: 📌 頁面英文縮寫與專有名詞對照 (Acronym & Term Footnotes): | AI: 人工智慧 (Artificial Intelligence)  |  AIEC: 人工智慧評測與認證體系 (Artificial Intelligence Evaluation & Certification)  |  RAG: 檢索增強生成 (Retrieval-Augmented Generation)  |  API: 應用程式介面 (Application Programming Interface)  |  Cron: 定時排程服務 (Chronos Command Scheduler)  |  MOC: 內容主索引地圖 (Map of Content)
+=== Slide 30 ===
+[TextBox 3]: SECTION 5: EVALUATION PLATFORMS & AUTOMATED T&E
+[TextBox 4]: 結語與未來展望 — MAITE 自動化評測測試工廠
+[Rounded Rectangle 6]: 🎯
+[TextBox 7]: 1. AI 專屬評測核心貢獻 | AI Evaluation Impact & Value Summary
+[TextBox 8]: ▪ 1. 權威評測標準整合：確立 DoD CDAO, NIST AI RMF, ISO 42001 與 MITRE ATLAS 縱深評測 | ▪ 2. 量化評測 SOP 落地：建立 15 項量化指標、驗測 SOP 與明確 Pass/Fail 門檻 | ▪ 3. 評測知識庫建置：全套 21 篇雙向鏈結 Markdown 筆記完全存入 Obsidian Vault
+[Rounded Rectangle 10]: 🚀
+[TextBox 11]: 2. 未來演進與推廣方向 | Future Roadmap & MAITE Test Factory
+[TextBox 12]: ▪ 1. MAITE 自動化評測測試工廠：整合 garak, RAGAS, AgentBench 於單一 MLOps 流水線 | ▪ 2. LVC 平行戰場紅隊演練：於 VBS 4 / EADSIM 中強化對抗貼片與電戰干擾紅隊演練 | ▪ 3. ISO 42001 / CMMC 評測認證：備妥全套 SOP 與 Log 稽核軌跡，迎接正式合規檢定
+[Rounded Rectangle 13]: 📌 頁面英文縮寫與專有名詞對照 (Acronym & Term Footnotes): | DoD: 美國國防部 (Department of Defense)  |  CDAO: 數位與人工智慧長辦公室 (Chief Digital and Artificial Intelligence Office)  |  NIST: 美國國家標準暨技術研究院 (National Institute of Standards and Technology)  |  RMF: 風險管理框架 (Risk Management Framework)  |  ISO: 國際標準化組織 (International Organization for Standardization)  |  AIMS: 人工智慧管理系統 (Artificial Intelligence Management System)  |  MITRE: 邁特公司 (MITRE Corporation)  |  ATLAS: 人工智慧系統對抗威脅圖譜 (Adversarial Threat Landscape for Artificial-Intelligence Systems)  |  MAITE: 模型與 AI 測試評估基礎設施框架 (Model & AI Test and Evaluation Infrastructure Framework)  |  MLOps: 機器學習營運 (Machine Learning Operations)  |  LVC: 實戰-虛擬-構造平行戰場整合 (Live-Virtual-Constructive)  |  VBS: 虛擬戰場模擬軟體 (Virtual Battlespace)  |  EADSIM: 延伸防空模擬系統 (Extended Air Defense Simulation)  |  CMMC: 網路安全成熟度模型認證 (Cybersecurity Maturity Model Certification)
+=== Slide 31 ===
+[TextBox 3]: SECTION 6: ADVANCED DEFENSE AI SECURITY & INFRASTRUCTURE
+[TextBox 4]: NCSIST AIEC 國防 AI 評測總體藍圖與 5 大戰術柱石
+[Rounded Rectangle 6]: 🏛️
+[TextBox 7]: NCSIST AIEC 架構圖與主動防禦 | NCSIST Defense Architecture Blueprint
+[TextBox 8]: ▪ 1. 代碼注入與數據污染主動防禦：針對視覺辨識 (YOLO, Mobile SAM) 與 LLM 模型，建立代碼注入 (Code Injection) 與數據污染 (Poisoning) 過濾閘門。 | ▪ 2. Cyber Range 對抗演練：結合 [[MITRE ATLAS 人工智慧對抗威脅矩陣]] 與 CALDERA Arsenal 外掛，建立動態資安脆弱性模擬。 | ▪ 3. 國家級機構中樞：由國家中山科學研究院 (NCSIST) 主導主權算力與國防 AIEC 評測中心規範放行。
+[Rounded Rectangle 10]: 🛡️
+[TextBox 11]: 底層 5 大戰術 SOP 柱石 | Five Tactical Operational Pillar SOPs
+[TextBox 12]: ▪ 1. 擬定 ROE 交戰規則：明確定義人機協同與可控性 (HITL/HOTL/HOOTL)。 | ▪ 2. 驗證分層式 AI 架構：確效系統能在極端作戰條件下完成任務。 | ▪ 3. 執行紅隊對抗/演訓：測試系統承受攻擊與受損後之彈性恢復力。 | ▪ 4. 研發/軍事資料集分級：落實清洗規則、版本控管與 Data/Model Provenance。 | ▪ 5. 供應鏈安全檢查：審查開源模型與第三方 SDK 後門及邏輯合規。
+[Rounded Rectangle 13]: 📌 頁面英文縮寫與專有名詞對照 (Acronym & Term Footnotes): | NCSIST: 國家中山科學研究院 (National Chung-Shan Institute of Science and Technology)  |  AIEC: 人工智慧評測與認證體系 (Artificial Intelligence Evaluation & Certification)  |  ATLAS: 人工智慧系統對抗威脅圖譜 (Adversarial Threat Landscape for Artificial-Intelligence Systems)  |  HITL: 人在紐中/人在迴路 (Human-in-the-Loop)  |  HOTL: 人在紐上/實時監督 (Human-on-the-Loop)  |  HOOTL: 完全自主/人外迴路 (Human-out-of-the-Loop)  |  CMMC: 網路安全成熟度模型認證 (Cybersecurity Maturity Model Certification)
+=== Slide 32 ===
+[TextBox 3]: SECTION 6: ADVANCED DEFENSE AI SECURITY & INFRASTRUCTURE
+[TextBox 4]: 國防 AIEC 核心任務與交戰規則 (RoE) 授權邊界
+[Rounded Rectangle 6]: 🎯
+[TextBox 7]: 國防 AIEC 五大核心管制任務 | Five Core Control Tasks of Defense AIEC
+[TextBox 8]: ▪ 1. 制定交戰規則 (RoE)：劃分全系統人機自動化權能授權邊界。 | ▪ 2. 審核主權基礎設施：審核民雄院區三層算力與電力/物理韌性。 | ▪ 3. 策劃 LVC 紅軍測試：於 VBS 4 / EADSIM 平行戰場測試對抗防禦。 | ▪ 4. RAG 降密稽核：審查研發資料集探勘，防止資訊降密洩漏 (Q14)。 | ▪ 5. 供應鏈後門審查：嚴格審查開源模型與 SDK 演算法後門。
+[Rounded Rectangle 10]: ⚖️
+[TextBox 11]: RoE 人機授權三階權能邊界 | Three-Tier Autonomy Boundary (RoE)
+[TextBox 12]: ▪ 1. Human-in-the-loop (HITL / 人在紐中)：最終火力打擊與目標授權必須由人類指揮官手動執行。 | ▪ 2. Human-on-the-loop (HOTL / 人在紐上)：AI 執行戰術建議，人類具備實時監控與強制中斷權 (Abort Button)。 | ▪ 3. Human-out-of-the-loop (HOOTL / 完全自主)：僅限於蜂群無人機航路規劃與偵察等非致傷性任務。
+[Rounded Rectangle 13]: 📌 頁面英文縮寫與專有名詞對照 (Acronym & Term Footnotes): | HITL: 人在紐中/人在迴路 (Human-in-the-Loop)  |  HOTL: 人在紐上/實時監督 (Human-on-the-Loop)  |  HOOTL: 完全自主/人外迴路 (Human-out-of-the-Loop)  |  LVC: 實戰-虛擬-構造平行戰場整合 (Live-Virtual-Constructive)  |  VBS: 虛擬戰場模擬軟體 (Virtual Battlespace)  |  EADSIM: 延伸防空模擬系統 (Extended Air Defense Simulation)  |  RAG: 檢索增強生成 (Retrieval-Augmented Generation)  |  RBAC: 基於角色的存取控制 (Role-Based Access Control)
+=== Slide 33 ===
+[TextBox 3]: SECTION 6: ADVANCED DEFENSE AI SECURITY & INFRASTRUCTURE
+[TextBox 4]: 戰術邊緣硬體安全與模型緊急自毀機制
+[Rounded Rectangle 6]: 🛡️
+[TextBox 7]: 無 GPS 網狀通訊與硬體級防篡改 | Hardware Tamper-Resistance in Mesh Networks
+[TextBox 8]: ▪ 1. 網狀通訊被俘獲風險 (Mesh Network)：在前線電戰干擾與無 GPS 網狀環境下，無人機與邊緣運算設備極易遭敵方俘獲。 | ▪ 2. 硬體級防篡改 (Tamper-Resistance)：採用軍規 Secure Enclave / TPM 晶片與物理開箱感測電路 (Tamper Mesh)。 | ▪ 3. 物理防護障壁：設備遭受異常解體或外殼穿透時，立即切斷主板電源並解發邏輯保護。
+[Rounded Rectangle 10]: 💣
+[TextBox 11]: 模型緊急自毀與物理零化 (<100ms) | Emergency Self-Destruct & Zeroization (<100ms)
+[TextBox 12]: ▪ 1. 緊急權重複寫指令：當系統偵測到物理入侵、通訊斷連超過安全時限或接獲中斷信號時，在 $<100\mathrm{ms}$ 內觸發自毀。 | ▪ 2. Flash/RAM 雜訊衝刷：以隨機雜訊迅速覆寫模型記憶體與 Flash 快閃記憶體，徹底撕毀演算法與權重。 | ▪ 3. 物理零化 (Zeroization)：隨機化金鑰熔絲 (Key Fusing)，防止敵方逆向工程與模型竊取。
+[Rounded Rectangle 13]: 📌 頁面英文縮寫與專有名詞對照 (Acronym & Term Footnotes): | GPS: 全球定位系統 (Global Positioning System)  |  Mesh: 網狀拓撲通訊網絡 (Mesh Topology Network)  |  TPM: 可信賴平台模組 (Trusted Platform Module)  |  RAM: 隨機存取記憶體 (Random-Access Memory)  |  Flash: 快閃記憶體 (Flash Memory)
+=== Slide 34 ===
+[TextBox 3]: SECTION 6: ADVANCED DEFENSE AI SECURITY & INFRASTRUCTURE
+[TextBox 4]: 地端模型蒸餾、資料與模型溯源 SOP
+[Rounded Rectangle 6]: ⚙️
+[TextBox 7]: 地端模型蒸餾與輕量化微調 | On-Premise Distillation & LoRA Fine-Tuning
+[TextBox 8]: ▪ 1. 知識蒸餾 (Knowledge Distillation)：將地端 70B 主權教師模型之推理能力蒸餾至 7B / 3B 輕量化邊緣學生模型。 | ▪ 2. Gemma 4 LoRA 本地微調：針對戰術任務進行輕量化適應微調 (LoRA)，僅更新 $<1\%$ 參數，兼顧時延與精度。 | ▪ 3. GGUF 4-bit 量化：透過 llama.cpp 實施 GGUF 量化部署，適應邊緣低功耗晶片。
+[Rounded Rectangle 10]: 📊
+[TextBox 11]: Data & Model Provenance 溯源與 Confidence | Data & Model Provenance & Confidence Calibration
+[TextBox 12]: ▪ 1. Data Provenance (資料溯源)：詳細記錄訓練資料集來源、邏輯檢查規則、清洗演算法版本號 (`v1.4.2`) 與標籤品質。 | ▪ 2. Model Provenance (模型溯源)：追溯模型訓練超參數與 Checkpoint 雜湊值；若發現戰術誤判，可於 10 分鐘內回溯隔離受污染數據。 | ▪ 3. 信心分數 (Confidence Score) 校準：所有模型輸出伴隨 Confidence Score (score)，確保期望校準誤差 $\mathrm{ECE} \le 0.05$。
+[Rounded Rectangle 13]: 📌 頁面英文縮寫與專有名詞對照 (Acronym & Term Footnotes): | LLM: 大語言模型 (Large Language Model)  |  LoRA: 低秩適應微調 (Low-Rank Adaptation)  |  GGUF: 通用模型量化格式 (Georgi Gerganov Unified Format)  |  ECE: 期望校準誤差 (Expected Calibration Error)
